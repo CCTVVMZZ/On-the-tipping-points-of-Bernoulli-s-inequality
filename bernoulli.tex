@@ -1,0 +1,198 @@
+% -*- mode: latex; eval: (flyspell-mode 1); ispell-local-dictionary: "american"; TeX-master: t; -*-
+
+\documentclass[12pt]{article}
+
+
+
+\usepackage{hyperref,amsthm,amsmath,amsfonts} 
+
+\newcommand{\bN}{\mathbb{N}} 
+\newcommand{\Rnneg}{\left[0, \infty\right[}
+\newcommand{\Rpos}{\left]0, \infty\right[}
+
+\newcommand{\ttx}{\mathtt{x}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\sloppy
+
+Let  $\ttx$ denote an indeterminate over the real numbers.
+Put
+$$
+f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx 
+$$
+for each $n \in \bN$.
+%Lemma~\ref{lem:Bernoulli} states that $f_n(- x)$ is non-negative for every $n \in \bN$ and every $x \in [0, 1]$.
+
+\begin{theorem} \label{thm:root-mult}
+  For each integer $n \ge 2$,
+  $0$ is a double root of $f_n$ and $0$ is the only non-simple (complex) root of $f_n$.
+\end{theorem}
+
+\begin{proof}
+  Straightforward computations yield
+  \begin{equation} \label{eq:deriv-fn} 
+  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) 
+  \end{equation}
+  and
+  $$
+  f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \,.
+  $$
+  It follows
+  $$
+  f_n(0) = f_n'(0) = 0 \ne n (n - 1) = f_n''(0) \, ,
+  $$
+  whence $0$ is a double root of $f_n$.
+  In addition, $f_n$ and its derivative satisfy 
+   $$
+   (1 + \ttx) f_n'(\ttx) - n f_n(\ttx) = n (n - 1) \ttx \, ,
+   $$
+   so for every complex number $z$, $f_n(z) = f_n'(z) = 0$ implies $z = 0$.
+   It follows that $0$ is the only non-simple root of $f_n$.
+ \end{proof}
+
+ The following identities hold for every $n \in \bN$ and may be of interest to the reader:
+ $$
+ f_n (\ttx)
+ = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
+ = \ttx^2 \sum_{k = 1}^{n - 1}  \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
+ $$
+
+
+
+ \begin{theorem} \label{thm:n-is-even}
+   For each even integer $n \ge 2$,
+   $f_n$ is positive on $\left]- \infty, 0 \right[ \cup \left]0, \infty \right[$.
+ \end{theorem}
+
+ \begin{proof}
+   Since $n - 1$ is an odd positive integer,
+   $1$ is the only real root of $\ttx^{n - 1} - 1$, 
+   and thus Equation~\eqref{eq:deriv-fn} shows that $0$ is the only real root of $f_n'$.
+   Therefore, it follows from Rolle's theorem that $0$ is the only real root of $f_n$.
+   Besides, $f(x)$ approaches $\infty$ as $x$ approaches $\pm \infty$.
+   Hence, $f$ is positive on the desired set.
+ \end{proof}
+
+ 
+ \begin{theorem} \label{thm:n-is-odd}
+   For each odd integer $n \ge 3$,
+   there exists $t_n \in \left] - \infty, - 2 \right[$ such that $f_n$ is 
+   negative on $\left]- \infty, t_n \right[$
+   and
+   positive on $\left]t_n, 0 \right[ \cup\left]0, \infty \right[$.
+ \end{theorem} 
+
+ \begin{proof}
+   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$ and
+   since $f_n(- 1) = n - 1 > 0$,
+   the intermediate value theorem ensures that there exists $t_n \in \left]- \infty, -1 \right[$ such that $f_n(t_n) = 0$. 
+   Since $n - 1$ is an even positive integer,
+   $- 1$ and $1$ are the only real roots of $\ttx^{n - 1} - 1$,
+   and thus Equation~\eqref{eq:deriv-fn} shows that $- 2$ and $0$ are the only the real roots of $f_n'$.
+   Therefore, it follows from Rolle's theorem that
+   at most one root of $f_n$ lies in $\left]- \infty, - 2 \right[$ and that
+   $f_n$ has no root in $\left[- 2, 0 \right[ \cup \left]0,  \infty \right[$.
+   Hence, $t_n$ and $0$ are the only real roots of $f_n$ and $t_n$ belongs to $\left]- \infty, - 2 \right[$.
+   Since $f_n(x)$ approaches $\pm \infty$ as $x$ approaches $\pm \infty$,
+   $f_n$ is negative on $\left]- \infty, t_n \right[$ and positive on $\left]0, \infty \right[$.
+   Since $f(- 1) > 0$ and since $- 1 \in \left]t_n, 0 \right[$,
+   $f$ is positive on $\left]t_n, 0 \right[$. 
+ \end{proof}
+ 
+ \begin{theorem}[Had\v{z}iivanov and Prodanov \cite{MitrinovicAI}] \label{thm:bulgare}
+   \label{lem:odd-two-roots}   
+   For each odd integer $n \ge 3$,
+   $f_n$ is positive on $\left]- 2 - {(n - 2)}^{- 1}, - 2 \right[$.
+ \end{theorem}
+
+ \begin{proof}
+   We proceed by induction on~$n$.
+   For each integer $n \ge 3$, put
+   $$
+   a_n = - 2 - \frac{1}{n - 2} 
+   $$
+   and
+   $$
+   I_n = \left] a_n, 0 \right[ \cup \left]0, \infty \right[ \, .
+   $$
+   Since $a_3 = - 3$ and since $f_3(\ttx) = \ttx^2 (x + 3)$,
+   $f_3$ is positive on $I_3$;
+   since
+   $$
+   f_4(\ttx) = \ttx^2 ({(\ttx + 2)}^2 + 2 ) \,, 
+   $$
+   $f_4$ is positive on $I_4$. 
+   Hence, the basis of our induction holds.
+   Let us now prove the induction step.
+   It  relies on the following recurrence relation which holds for every integer $n \ge 3$:
+   \begin{equation} \label{eq:recur-f-n+2} 
+   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - a_{n + 2}) \,.
+   \end{equation}
+   Assume that $f_n$ is positive on $I_n$ for some integer $n \ge 3$.
+   Let $x \in I_{n + 2}$.
+   Since $I_{n + 2} \subseteq I_n$,
+   $f_n(x)$ is positive.
+   Moreover, 
+   $n x^2(x - a_{n + 2})$ is positive and ${(1 + x)}^2$ is non-negative.
+   It thus follows from Equation~\eqref{eq:recur-f-n+2} that $f_n(x)$ is positive.
+   Hence, $f_{n + 2}$ is positive on $I_{n + 2}$.
+  \end{proof} 
+ % It remains to prove that $f_n$ has a root in $\left]- \infty, a_n \right]$,
+ %   where $a_n = - 2 - {(n - 2)}^{-1}$.
+ %   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
+ %   it suffices to check that $f_n(a_n)$ is non-negative.
+ %   We prove by induction on $n$ then $f_n$ is non-negative on $\left[a_n, \infty \right[$.
+ %   Since $f_3(\ttx) = \ttx^2(\ttx + 3)$ ans since $a_3 = - 3$,
+ %   the basis of our induction holds true.
+   % Let us now assume $f_n(\ttx)$ is non-negative on $[a_n, - 2]$ for some odd integer $n \ge 3$.
+   % In particular, $f_n(\ttx)$ is non-negative on $[a_{n + 2}, - 2]$.
+ 
+   % whence
+   %  $$
+   %  f_{n + 2}(a_{n + 2}) = {(1 + a_{n + 2})}^2 f_n(a_{n + 2}) \, .
+   %  $$
+   %  Since $a_n < a_{n + 2}  < 0$,
+   %  $f_n$ has no roots in $\left]a_n,  0 \right[$.
+   %  Besides, 
+    
+%    %\end{proof}
+  
+% \begin{theorem} \label{lem:even-one-root}
+%   For each even integer $n \ge 2$,
+%   $f_n$ is positive on $\left]- \infty, 0 \right[ \cup \left]0, \infty \right[$.
+%  \end{theorem} 
+
+%  \begin{proof}
+%    Since $f_2(\ttx) = \ttx^2$, we
+%  \end{proof} 
+
+%  \begin{theorem}[Bernoulli's inequality] \label{thm:Bernoulli}
+%    Let $n$ be an integer greater than $1$ and let $x$ be a non-zero real number.
+%    If $n$ is even or if $x \ge - 2$ then $f_n(x)$ is positive.
+%  \end{theorem}
+ 
+ 
+%  \begin{proof}
+%    First, Lemmas \ref{lem:even-one-root} and  \ref{lem:odd-two-roots} ensure that
+%    $f_n$ has not root in  $\left]0, \infty \right[$.   
+%    Besides, $f_n(t)$ approaches $\infty$ as $t$ approaches $\infty$.
+%    Therefore, $f_n$ is positive on $\left]0, \infty \right[$.
+%    Second, assume that $n$ is even.
+%    Then, Lemma~\ref{lem:even-one-root} ensures that $f_n$ has no negative roots.
+%    Besides,  $f_n(t)$ approaches $\infty$ as $t$ approaches $- \infty$.
+%    Therefore, $f_n$ is positive on $\left]- \infty, 0 \right[$.
+%    Third, assume that $n$ is odd.
+%    Lemma~\ref{lem:even-one-root} ensures that $f_n$ has no root in $\left[- 2, 0 \right[$.
+%    Besides, $f(- 1) = n - 1$ is positive.
+%    Therefore, $f_n$ is positive on $\left[- 2, 0 \right[$.
+%  \end{proof}
+
+%  Let $n$ be an odd integer greater than~$1$.
+%  Lemma~\ref{lem:odd-two-roots}, there exists $t_n \in \left]- \infty, - 2 \right]$
+%  Let $t_n$ denote the unique non-zero real root of $f_n$
+
+
+\end{document}
