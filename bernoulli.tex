@@ -6,28 +6,42 @@
 
 \usepackage{hyperref,amsthm,amsmath,amsfonts} 
 
-\newcommand{\bN}{\mathbb{N}} 
-\newcommand{\Rnneg}{\left[0, \infty\right[}
-\newcommand{\Rpos}{\left]0, \infty\right[}
+\newcommand{\bZ}{\mathbb{Z}} 
+\newcommand{\bR}{\mathbb{R}} 
+\newcommand{\bN}[1]{\bZ_{\ge #1}} 
+% \newcommand{\Rnneg}{\left[0, \infty\right[}
+% \newcommand{\Rpos}{\left]0, \infty\right[}
 
 \newcommand{\ttx}{\mathtt{x}}
+
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+% \newtheorem{proposition}{Proposition}
+% \newtheorem{lemma}{Lemma}
 
 \begin{document}
 
 \sloppy
 
-Let  $\ttx$ denote an indeterminate over the real numbers.
+Let $\ttx$ be an indeterminate over $\bR$ and let $n \in \bN{0}$.
 Put
 $$
-f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx 
+f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \, .
 $$
-for each $n \in \bN$.
-%Lemma~\ref{lem:Bernoulli} states that $f_n(- x)$ is non-negative for every $n \in \bN$ and every $x \in [0, 1]$.
+For each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$; 
+the latter inequality is the \emph{Bernoulli's inequality}.
+For instance, we have 
+$f_0(\ttx) = f_1(\ttx) = 0$,
+$f_2(\ttx) = \ttx^2$,
+$$
+f_3(\ttx) = \ttx^3 + 3 \ttx = \ttx^2 (\ttx + 3) \,,
+$$
+and 
+$$
+f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
+$$
 
 \begin{theorem} \label{thm:root-mult}
-  For each integer $n \ge 2$,
+  For each $n \in \bN{2}$,
   $0$ is a double root of $f_n$ and $0$ is the only non-simple (complex) root of $f_n$.
 \end{theorem}
 
@@ -52,8 +66,11 @@ for each $n \in \bN$.
    so for every complex number $z$, $f_n(z) = f_n'(z) = 0$ implies $z = 0$.
    It follows that $0$ is the only non-simple root of $f_n$.
  \end{proof}
-
- The following identities hold for every $n \in \bN$ and may be of interest to the reader:
+ 
+Theorem~\ref{thm:root-mult} ensures that for every $a \in \bR$ and every integer $n \in \bN{2}$,
+the graph of $f_n$ \emph{crosses} the $x$-axis at $x = a$ if, and only if, $a$ is a non-zero root of $f_n$
+(the graph of $f_n$ \emph{touches} the $x$-axis at $x = 0$ but does not cross it).
+ The following identities hold for every $n \in \bN{0}$ and may be of interest to the reader:
  $$
  f_n (\ttx)
  = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
@@ -63,8 +80,10 @@ for each $n \in \bN$.
 
 
  \begin{theorem} \label{thm:n-is-even}
-   For each even integer $n \ge 2$,
-   $f_n$ is positive on $\left]- \infty, 0 \right[ \cup \left]0, \infty \right[$.
+   For each even  $n \in \bN{2}$, $f_n$ is
+   decreasing on $\left]-\infty, 0 \right]$,
+   increasing on $\left[0, \infty \right[$, and
+   positive on $\bR \setminus \{ 0 \}$.
  \end{theorem}
 
  \begin{proof}
@@ -72,21 +91,22 @@ for each $n \in \bN$.
    $1$ is the only real root of $\ttx^{n - 1} - 1$, 
    and thus Equation~\eqref{eq:deriv-fn} shows that $0$ is the only real root of $f_n'$.
    Therefore, it follows from Rolle's theorem that $0$ is the only real root of $f_n$.
-   Besides, $f(x)$ approaches $\infty$ as $x$ approaches $\pm \infty$.
-   Hence, $f$ is positive on the desired set.
+   Besides, $f_n(x)$ approaches $\infty$ as $x$ approaches $\pm \infty$.
+   Hence, $f_n$ is positive on both intervals $\left]- \infty, 0 \right[$ and $\left]0, \infty \right[$.
  \end{proof}
 
  
  \begin{theorem} \label{thm:n-is-odd}
-   For each odd integer $n \ge 3$,
+   For each odd  $n \in \bN{3}$,
    there exists $t_n \in \left] - \infty, - 2 \right[$ such that $f_n$ is 
    negative on $\left]- \infty, t_n \right[$
    and
-   positive on $\left]t_n, 0 \right[ \cup\left]0, \infty \right[$.
+   positive on $\left]t_n, 0 \right[ \cup \left]0, \infty \right[$.
  \end{theorem} 
 
  \begin{proof}
-   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$ and
+   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$
+   and
    since $f_n(- 1) = n - 1 > 0$,
    the intermediate value theorem ensures that there exists $t_n \in \left]- \infty, -1 \right[$ such that $f_n(t_n) = 0$. 
    Since $n - 1$ is an even positive integer,
@@ -96,16 +116,77 @@ for each $n \in \bN$.
    at most one root of $f_n$ lies in $\left]- \infty, - 2 \right[$ and that
    $f_n$ has no root in $\left[- 2, 0 \right[ \cup \left]0,  \infty \right[$.
    Hence, $t_n$ and $0$ are the only real roots of $f_n$ and $t_n$ belongs to $\left]- \infty, - 2 \right[$.
-   Since $f_n(x)$ approaches $\pm \infty$ as $x$ approaches $\pm \infty$,
-   $f_n$ is negative on $\left]- \infty, t_n \right[$ and positive on $\left]0, \infty \right[$.
-   Since $f(- 1) > 0$ and since $- 1 \in \left]t_n, 0 \right[$,
-   $f$ is positive on $\left]t_n, 0 \right[$. 
+   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
+   $f_n$ is negative on $\left]- \infty, t_n \right[$;
+   since $f_n(- 1) > 0$ and since $- 1 \in \left]t_n, 0 \right[$,
+   $f_n$ is positive on $\left]t_n, 0 \right[$; 
+   since $f_n(x)$ approaches $\infty$ as $x$ approaches $\infty$,
+   $f_n$ is positive on $\left]0, \infty \right[$.
  \end{proof}
+
+ For each odd $n \in \bN{3}$,
+ let $t_n$ be as in Theorem~\ref{thm:n-is-odd}:
+ $t_n \in \left]- \infty, - 2 \right[$, $f_n(t_n) = 0$, and
+ $$
+ \left\{ x \in \bR : f_n(x) \ge 0 \right\}
+ = \left\{ x \in \bR : {(1 + x)}^n \ge 1 + n x  \right\}
+ = \left[t_n, \infty \right[ \, .
+ $$
+ % For instance $t_3  = - 3$.
+
+
+ \begin{theorem} [Had\v{z}iivanov and Prodanov \cite{MitrinovicAI}] \label{thm:bulgare}
+   The following inequalities holds true for every odd $n \in \bN{3}$:
+   $$ - 3 \le t_n < t_{n + 2} < - 2 - \frac{1}{n} \,.
+   $$
+ \end{theorem}
  
- \begin{theorem}[Had\v{z}iivanov and Prodanov \cite{MitrinovicAI}] \label{thm:bulgare}
-   \label{lem:odd-two-roots}   
-   For each odd integer $n \ge 3$,
-   $f_n$ is positive on $\left]- 2 - {(n - 2)}^{- 1}, - 2 \right[$.
+ \begin{proof}
+   Put $u_n = - 2 - n^{-1}$ for each $n \in \bN{1}$.
+   Let $n \in \bN{3}$.
+   Straightforward computations yield 
+   $$
+   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - u_n) \,
+   $$
+   whence
+   $$
+   f_{n + 2}(u_n) = {(1 + u_n)}^2 f_n(u_n) \ge f_n(u_n) \ge f_n(u_{n - 2})
+   $$
+   and
+   $$
+   0 = {(1 + t_{n + 2})}^2 f_n(t_{n + 2}) +  n t_{n + 2}^2 (t_{n + 2} - u_n)  
+   $$
+   if $n$ is odd.
+   
+   % Since $u_n \ne - 1$, Equation~\eqref{ } yield
+   % $$
+
+   % $$
+   % Since $t_n \notin \{ - 1, 0 \}$, 
+   % The latter two equalities yield
+   % $$
+   % f_{n + 2}(u_n) = f_n(u_n)
+   % $$
+   % and
+   % $$
+   
+   % $$
+   % and thar have equal sign and
+   
+ for every $n \in \bN{3}$ and
+ $$
+ f_n(t_{n + 2})  (u(n) - t_{n + 2})  \ge 0
+ $$
+ for every odd $n \in \bN{3}$.
+ 
+   Let us first prove by induction on $n$ that $t_n$ is not greater than $a(n + 2)$ for every odd $n \in \bN{3}$.
+   
+ \end{proof}
+ \begin{theorem}
+   \label{lem:odd-two-roots}
+   % For each odd $n \in \bN{3}$,  $- 3 \le t_n < t_{n + 2} < - 2
+
+   % $$f_n$ is positive on $\left]- 2 - {(n - 2)}^{- 1}, - 2 \right[$.
  \end{theorem}
 
  \begin{proof}
@@ -128,9 +209,6 @@ for each $n \in \bN$.
    Hence, the basis of our induction holds.
    Let us now prove the induction step.
    It  relies on the following recurrence relation which holds for every integer $n \ge 3$:
-   \begin{equation} \label{eq:recur-f-n+2} 
-   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - a_{n + 2}) \,.
-   \end{equation}
    Assume that $f_n$ is positive on $I_n$ for some integer $n \ge 3$.
    Let $x \in I_{n + 2}$.
    Since $I_{n + 2} \subseteq I_n$,
@@ -193,6 +271,7 @@ for each $n \in \bN$.
 %  Let $n$ be an odd integer greater than~$1$.
 %  Lemma~\ref{lem:odd-two-roots}, there exists $t_n \in \left]- \infty, - 2 \right]$
 %  Let $t_n$ denote the unique non-zero real root of $f_n$
-
+  \bibliographystyle{plain}
+  \bibliography{bernoulli}
 
 \end{document}
