@@ -9,6 +9,12 @@
 \newcommand{\bZ}{\mathbb{Z}} 
 \newcommand{\bR}{\mathbb{R}} 
 \newcommand{\bN}[1]{\bZ_{\ge #1}} 
+\newcommand{\gtint}[1]{\left] #1, \infty \right[}
+\newcommand{\geint}[1]{\left[ #1, \infty \right[}
+\newcommand{\ltint}[1]{\left]- \infty, #1 \right[}
+\newcommand{\leint}[1]{\left]- \infty, #1 \right]}
+% \newcommand{\Rneg}{\left]- \infty, 0 \right[}
+ %\newcommand{\Rnpos}{\left]- \infty, 0 \right]}
 % \newcommand{\Rnneg}{\left[0, \infty\right[}
 % \newcommand{\Rpos}{\left]0, \infty\right[}
 
@@ -28,7 +34,8 @@ $$
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \, .
 $$
 For each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$; 
-the latter inequality is the \emph{Bernoulli's inequality}.
+the latter inequality is usually called \emph{Bernoulli's inequality}.
+%Note  $f_n$ vanishes at~$0$. 
 For instance, we have 
 $f_0(\ttx) = f_1(\ttx) = 0$,
 $f_2(\ttx) = \ttx^2$,
@@ -67,9 +74,9 @@ $$
    It follows that $0$ is the only non-simple root of $f_n$.
  \end{proof}
  
-Theorem~\ref{thm:root-mult} ensures that for every $a \in \bR$ and every integer $n \in \bN{2}$,
-the graph of $f_n$ \emph{crosses} the $x$-axis at $x = a$ if, and only if, $a$ is a non-zero root of $f_n$
-(the graph of $f_n$ \emph{touches} the $x$-axis at $x = 0$ but does not cross it).
+Theorem~\ref{thm:root-mult} ensures that for every $x \in \bR$ and every integer $n \in \bN{2}$,
+the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
+(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross it).
  The following identities hold for every $n \in \bN{0}$ and may be of interest to the reader:
  $$
  f_n (\ttx)
@@ -80,78 +87,114 @@ the graph of $f_n$ \emph{crosses} the $x$-axis at $x = a$ if, and only if, $a$ i
 
 
  \begin{theorem} \label{thm:n-is-even}
-   For each even  $n \in \bN{2}$, $f_n$ is
-   decreasing on $\left]-\infty, 0 \right]$,
-   increasing on $\left[0, \infty \right[$, and
+   For each even  $n \in \bN{2}$,
+   $f_n$ is
+   decreasing on $\leint{0}$,
+   increasing on $\geint{0}$, and
    positive on $\bR \setminus \{ 0 \}$.
  \end{theorem}
 
  \begin{proof}
    Since $n - 1$ is an odd positive integer,
-   $1$ is the only real root of $\ttx^{n - 1} - 1$, 
-   and thus Equation~\eqref{eq:deriv-fn} shows that $0$ is the only real root of $f_n'$.
-   Therefore, it follows from Rolle's theorem that $0$ is the only real root of $f_n$.
-   Besides, $f_n(x)$ approaches $\infty$ as $x$ approaches $\pm \infty$.
-   Hence, $f_n$ is positive on both intervals $\left]- \infty, 0 \right[$ and $\left]0, \infty \right[$.
+   Equation~\eqref{eq:deriv-fn} shows that
+   $f'_n$ is increasing on $\bR$,
+   and subsequently, that
+   $0$ is the only real root of $f_n'$.
+   Therefore,
+   $f'_n$ is negative on $\ltint{0}$
+   and 
+   positive on $\gtint{0}$.
+   The desired result follows.
  \end{proof}
 
+
+ \begin{theorem} \label{thm:variation-odd}
+   For each odd $n \in \bN{3}$, $f_n$ is
+   increasing on $\leint{- 2}$,
+   decreasing on $[- 2, 0]$, and
+   increasing on $\geint{0}$.
+ \end{theorem}
+
+ \begin{proof}
+   Since $n - 1$ is an even positive integer,
+   the polynomial function from $\bR$ to itself associated with $\ttx^{n - 1}$ is decreasing on $\leint{0}$
+   and increasing on $\geint{0}$.
+   Hence, 
+   Equation~\eqref{eq:deriv-fn} shows: 
+   $f_n'$ is decreasing on $\leint{- 1}$,
+   $f_n'$ vanishes at $- 2$,
+   $f_n'$ is increasing on $\geint{- 1}$, and
+   $f_n'$ vanishes at~$0$.
+   Therefore, $f_n'$ is positive on $\ltint{- 2}$,
+   negative on $\left]- 2, 0 \right[$, and
+   positive on $\gtint{0}$.
+   The desired result follows.
+ \end{proof}
  
- \begin{theorem} \label{thm:n-is-odd}
+ \begin{theorem} \label{thm:tipping-point}
    For each odd  $n \in \bN{3}$,
-   there exists $t_n \in \left] - \infty, - 2 \right[$ such that $f_n$ is 
+   there exists $t_n \in \ltint{- 2}$ such that $f_n$ is 
    negative on $\left]- \infty, t_n \right[$
    and
-   positive on $\left]t_n, 0 \right[ \cup \left]0, \infty \right[$.
+   positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
  \end{theorem} 
 
  \begin{proof}
-   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$
-   and
-   since $f_n(- 1) = n - 1 > 0$,
-   the intermediate value theorem ensures that there exists $t_n \in \left]- \infty, -1 \right[$ such that $f_n(t_n) = 0$. 
-   Since $n - 1$ is an even positive integer,
-   $- 1$ and $1$ are the only real roots of $\ttx^{n - 1} - 1$,
-   and thus Equation~\eqref{eq:deriv-fn} shows that $- 2$ and $0$ are the only the real roots of $f_n'$.
-   Therefore, it follows from Rolle's theorem that
-   at most one root of $f_n$ lies in $\left]- \infty, - 2 \right[$ and that
-   $f_n$ has no root in $\left[- 2, 0 \right[ \cup \left]0,  \infty \right[$.
-   Hence, $t_n$ and $0$ are the only real roots of $f_n$ and $t_n$ belongs to $\left]- \infty, - 2 \right[$.
-   Since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
-   $f_n$ is negative on $\left]- \infty, t_n \right[$;
-   since $f_n(- 1) > 0$ and since $- 1 \in \left]t_n, 0 \right[$,
-   $f_n$ is positive on $\left]t_n, 0 \right[$; 
-   since $f_n(x)$ approaches $\infty$ as $x$ approaches $\infty$,
-   $f_n$ is positive on $\left]0, \infty \right[$.
+   Since $f_n(- 1) = n - 1 > 0$ and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
+   the intermediate value theorem ensures that there exists $t_n \in \leint{- 1}$ such that $f_n(t_n) = 0$.
+   Besides, it follows from Theorem~\ref{thm:variation-odd} that $f_n$ is larger than $f_n(0) = 0$  on
+   $\left[- 2, 0 \right[ \cup \gtint{0}$.
+   Therefore, $t_n$ belongs to $\ltint{- 2}$ and
+   $f_n$ behaves on $\geint{- 2}$ as desired.
+   It remains to study $f_n$ on $\ltint{-2}$.
+   By Theorem~\ref{thm:variation-odd},
+   $f_n$ is increasing on that interval,
+   and thus $f_n$ is negative on $\ltint{t_n}$ and
+   positive on $\left]t_n, - 2 \right[$.
  \end{proof}
 
  For each odd $n \in \bN{3}$,
- let $t_n$ be as in Theorem~\ref{thm:n-is-odd}:
- $t_n \in \left]- \infty, - 2 \right[$, $f_n(t_n) = 0$, and
+ let $t_n$ be as in Theorem~\ref{thm:tipping-point}:
+ $t_n \in \left]- \infty, - 2 \right[$, $f_n(t_n) = 0$, ${(1 + t_n)}^n = 1 + n t_n$,
+ and 
  $$
  \left\{ x \in \bR : f_n(x) \ge 0 \right\}
  = \left\{ x \in \bR : {(1 + x)}^n \ge 1 + n x  \right\}
- = \left[t_n, \infty \right[ \, .
+ = \left[t_n, \infty \right[ 
  $$
+ ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
+  
+ 
  % For instance $t_3  = - 3$.
 
 
  \begin{theorem} [Had\v{z}iivanov and Prodanov \cite{MitrinovicAI}] \label{thm:bulgare}
-   The following inequalities holds true for every odd $n \in \bN{3}$:
+   The following inequalities hold true for every odd $n \in \bN{3}$:
    $$ - 3 \le t_n < t_{n + 2} < - 2 - \frac{1}{n} \,.
    $$
  \end{theorem}
  
  \begin{proof}
    Put $u_n = - 2 - n^{-1}$ for each $n \in \bN{1}$.
-   Let $n \in \bN{3}$.
-   Straightforward computations yield 
+   Let us first prove that $f_n$ is positive on $\left]u_{n - 2}, 0 \right[$ for every $n \in \bN{3}$.
+   Since $u_3 = - 3$ and $f_3(- 3) = 0$, it suffices to prove that $f_n(u_{n - 2})$ increases with~$n$.
+   For each $n \in \bN{1}$, straightforward computations yield 
    $$
-   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - u_n) \,
+   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - u_n) \,.
    $$
    whence
    $$
-   f_{n + 2}(u_n) = {(1 + u_n)}^2 f_n(u_n) \ge f_n(u_n) \ge f_n(u_{n - 2})
+   f_{n + 2}(u_n)
+   =
+   {(1 + u_n )}^2 f_n(u_n)
+   =
+   {\left(1 + \frac{1}{n} \right)}^2 f_n(u_n)
+   \ge
+   f_n(u_n)
+   >
+   f_n(u_{n - 2})
    $$
+   because $u_{n - 2} < u_n < - 2$ and $f_n$ is increasing 
    and
    $$
    0 = {(1 + t_{n + 2})}^2 f_n(t_{n + 2}) +  n t_{n + 2}^2 (t_{n + 2} - u_n)  
