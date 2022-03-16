@@ -30,9 +30,9 @@ $$
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \, .
 $$
 The fundamental property of $f_n$ is:
-for each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$; 
-the latter inequality is usually called \emph{Bernoulli's inequality}.
-For instance, we have 
+for each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$. 
+The latter inequality is usually called \emph{Bernoulli's inequality}.
+For $n \in \{ 0, 1, 2, 3 \}$, we have 
 $f_0(\ttx) = f_1(\ttx) = 0$,
 $f_2(\ttx) = \ttx^2$, and
 \begin{equation} \label{eq:f3-t3}
@@ -149,8 +149,7 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  \begin{proof}
    Since $f_n(- 1) = n - 1 > 0$ and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
    the intermediate value theorem ensures that there exists $t_n \in \leint{- 1}$ such that $f_n(t_n) = 0$.
-   Besides, Theorem~\ref{thm:Bernoulli} ensures that
-   $f_n$ is positive on $\left[-2, 0 \right[ \cup \gtint{0}$.
+   Besides, Theorem~\ref{thm:Bernoulli} ensures that $f_n$ is positive on $\left[-2, 0 \right[ \cup \gtint{0}$.
    Therefore, $t_n$ belongs to $\ltint{- 2}$ and
    $f_n$ behaves on $\geint{- 2}$ as desired.
    It remains to study the sign of $f_n$ on $\ltint{-2}$.
@@ -172,10 +171,43 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  $$
  ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
   
- 
- % For instance $t_3  = - 3$.
+ \begin{theorem}[N.~Had\v{z}iivanov and I.~Prodanov \cite{MitrinovicAI,MitrinovicCNIA,MondP94,MitrinovicP93}]
+   \label{thm:HP-upper}
+   For each $n \in 2 \bN + 3$, $t_n$ is less than $- 2 - n^{-1}$.
+ \end{theorem}
 
- \begin{lemma}
+ \begin{proof}
+   Let $n \in \bN + 2$.
+   It suffices to prove $f_n(- 2 - n^{-1}) > 0$.
+   Theorem~\ref{thm:Bernoulli} ensures $f_n(- {(n + 1)}^{-1}) \ge 0$, whence
+   $$
+   \left( 1 - \frac{1}{n + 1} \right)^n \ge 1 - \frac{n}{n + 1} = \frac{1}{n + 1} \, .
+   $$
+   Since 
+   $$
+   1 + \frac{1}{n} = \left( 1 - \frac{1}{n + 1} \right)^{-1} \,,
+   $$
+   it follows 
+   $$
+  \left( 1 + \frac{1}{n} \right)^n = \left( 1 - \frac{1}{n + 1} \right)^{-n}  \le n + 1 
+  $$
+  (a proof that ${(1 + n^{-1} )}^n$ is less than $e$ requires a little more work \cite{Wiener85}),
+  and subsequently,
+  $$
+  f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 > 0 \,,
+  $$
+  as desired.
+ \end{proof} 
+ 
+ 
+\begin{theorem}
+  The sequence $\left( t_n \right)_{n \in 2 \bN + 3}$ is increasing.
+ \end{theorem} 
+
+ \begin{proof}
+ \end{proof}
+ % For instance $t_3  = - 3$.
+ \begin{lemma} \label{lem:fun-positive}
    For each $n \in \bN + 2$, $f_n(- 2 - n^{-1})$ is positive.
  \end{lemma}
  
@@ -197,9 +229,40 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
   $$
   f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 > 0 \,.
   $$
- \end{proof} 
+\end{proof}
+
+ \begin{lemma} \label{lem:fun-positive}
+   For each $n \in \bN + 2$, $f_n(- 2 - n^{-1})$ is positive.
+ \end{lemma}
  
- \begin{theorem} [N.~Had\v{z}iivanov and I.~Prodanov \cite{MitrinovicAI,MitrinovicCNIA,MondP94,MitrinovicP93}] \label{thm:bulgare}
+ \begin{proof}
+   Theorem~\ref{thm:Bernoulli} ensures $f_n(- {(n + 1)}^{-1}) \ge 0$, whence
+   $$
+   \left( 1 - \frac{1}{n + 1} \right)^n \ge 1 - \frac{n}{n + 1} = \frac{1}{n + 1} \, .
+   $$
+   Since 
+   $$
+   1 + \frac{1}{n} = \left( 1 - \frac{1}{n + 1} \right)^{-1} \,,
+   $$
+   it follows 
+   $$
+  \left( 1 + \frac{1}{n} \right)^n = \left( 1 - \frac{1}{n + 1} \right)^{-n}  \le n + 1 
+  $$
+  (a proof that ${(1 + n^{-1} )}^n$ is less than $e$ requires a little more work \cite{Wiener85}),
+  and subsequently,
+  $$
+  f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 > 0 \,.
+  $$
+  
+\end{proof}
+
+\begin{theorem}
+  For each $n \in 2 \bN + 5$, $t_n$ is less than $- 2 - {(n - 2)}^{-1}$.
+\end{theorem}
+
+
+ 
+ \begin{theorem}[N.~Had\v{z}iivanov and I.~Prodanov \cite{MitrinovicAI,MitrinovicCNIA,MondP94,MitrinovicP93}] \label{thm:bulgare}
    The following inequalities hold true for every $n \in 2 \bN + 3$:
    $$
    - 3 \le t_n < t_{n + 2} < - 2 - \frac{1}{n} \,.
@@ -207,31 +270,30 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  \end{theorem}
  
  \begin{proof}
-   Put $u_n = - 2 - n^{-1}$ for each $n \in \bN{1}$.
-   Let us first prove that $f_n$ is positive on $\left]u_{n - 2}, 0 \right[$ for every $n \in \bN{3}$.
-   Since $u_3 = - 3$ and $f_3(- 3) = 0$, it suffices to prove that $f_n(u_{n - 2})$ increases with~$n$.
-   For each $n \in \bN{1}$, straightforward computations yield 
-   $$
+   Let $n \in \bN + 1$.
+   Put $u_n = - 2 - n^{-1}$.
+   The proof relies on Lemma~\ref{lem:fun-positive} and the following relation between $f_{n + 2}$ and $f_n$:
+   \begin{equation} \label{eq:fn+2-fn}
    f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - u_n) \,.
+ \end{equation}
+ Lemma~\ref{lem:fun-positive} ensures $f_n(u_n) > 0$,
+ so by letting  $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn},
+ we obtain
+ $$
+   f_{n + 2} (u_n)  = {\left(1 + \frac{1}{n} \right)}^2 f_n(u_n) > 0 \, .
+  $$
+  Now, assume $n \in 2 \bN + 3$.
+  Then, we have
+  $t_{n + 2} < u_n$ because $f_{n + 2}(u_n) > 0$
+  and
+  $t_n < u_n$ because $f_n(u_n) > 0$.
+   Hence, by letting $\ttx = t_n$ in Equation~\eqref{eq:fn+2-fn},
+   we obtain
    $$
-   whence
+   f_{n + 2} (t_n)  = n t_n^2 (t_n - u_n) < 0 \,, 
    $$
-   f_{n + 2}(u_n)
-   =
-   {(1 + u_n )}^2 f_n(u_n)
-   =
-   {\left(1 + \frac{1}{n} \right)}^2 f_n(u_n)
-   \ge
-   f_n(u_n)
-   >
-   f_n(u_{n - 2})
-   $$
-   because $u_{n - 2} < u_n < - 2$ and $f_n$ is increasing 
-   and
-   $$
-   0 = {(1 + t_{n + 2})}^2 f_n(t_{n + 2}) +  n t_{n + 2}^2 (t_{n + 2} - u_n)  
-   $$
-   if $n$ is odd.
+   and consequently, $t_n < t_{n + 2}$.
+   Finally, Equation~\eqref{eq:f3-t3} shows $t_3 = - 3$.
  \end{proof}   
 
  \bibliographystyle{plain}
