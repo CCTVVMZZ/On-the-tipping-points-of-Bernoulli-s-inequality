@@ -207,61 +207,39 @@ Let $n \in \bN + 2$.
  \end{theorem} 
 
  \begin{proof}
-   
+   Straightforward computations yield
+   \begin{equation} \label{eq:fn+2-fn}
+   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 \left(\ttx - 2 - \frac{1}{n} \right) 
+ \end{equation}
+ for each $n \in \bN + 1$.
+ Let $n \in 2 \bN + 3$.
+ By letting $\ttx = t_n$ in Equation~\eqref{eq:fn+2-fn}, we obtain
+$$ 
+f_{n + 2} (t_n) = n t_n^2 \left(t_n - 2 - \frac{1}{n} \right) \, .
+$$
+Besides, Theorem~\ref{thm:HP-upper} ensures that the right-hand side of the latter equation is negative.
+It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
+ \end{proof}
+
+
+ \begin{theorem}
+   The sequence $\left( t_n \right)_{n \in 2 \bN + 3}$ converges to $- 2$.
+ \end{theorem}
+
+ \begin{proof}
+   Let $\epsilon \in \gtint{0}$.
  \end{proof}
  % For instance $t_3  = - 3$.
- \begin{lemma} \label{lem:fun-positive}
-   For each $n \in \bN + 2$, $f_n(- 2 - n^{-1})$ is positive.
- \end{lemma}
- 
- \begin{proof}
-   Theorem~\ref{thm:Bernoulli} ensures $f_n(- {(n + 1)}^{-1}) \ge 0$, whence
-   $$
-   \left( 1 - \frac{1}{n + 1} \right)^n \ge 1 - \frac{n}{n + 1} = \frac{1}{n + 1} \, .
-   $$
-   Since 
-   $$
-   1 + \frac{1}{n} = \left( 1 - \frac{1}{n + 1} \right)^{-1} \,,
-   $$
-   it follows 
-   $$
-  \left( 1 + \frac{1}{n} \right)^n = \left( 1 - \frac{1}{n + 1} \right)^{-n}  \le n + 1 
-  $$
-  (a proof that ${(1 + n^{-1} )}^n$ is less than $e$ requires a little more work \cite{Wiener85}),
-  and subsequently,
-  $$
-  f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 > 0 \,.
-  $$
-\end{proof}
-
- \begin{lemma} \label{lem:fun-positive}
-   For each $n \in \bN + 2$, $f_n(- 2 - n^{-1})$ is positive.
- \end{lemma}
- 
- \begin{proof}
-   Theorem~\ref{thm:Bernoulli} ensures $f_n(- {(n + 1)}^{-1}) \ge 0$, whence
-   $$
-   \left( 1 - \frac{1}{n + 1} \right)^n \ge 1 - \frac{n}{n + 1} = \frac{1}{n + 1} \, .
-   $$
-   Since 
-   $$
-   1 + \frac{1}{n} = \left( 1 - \frac{1}{n + 1} \right)^{-1} \,,
-   $$
-   it follows 
-   $$
-  \left( 1 + \frac{1}{n} \right)^n = \left( 1 - \frac{1}{n + 1} \right)^{-n}  \le n + 1 
-  $$
-  (a proof that ${(1 + n^{-1} )}^n$ is less than $e$ requires a little more work \cite{Wiener85}),
-  and subsequently,
-  $$
-  f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 > 0 \,.
-  $$
-  
-\end{proof}
 
 \begin{theorem}
   For each $n \in 2 \bN + 5$, $t_n$ is less than $- 2 - {(n - 2)}^{-1}$.
 \end{theorem}
+
+\begin{proof}
+  Let $n \in 2 \bN + 5$.
+  By letting $\ttx = - 2 - n^{-1}$ in Equation~\eqref{eq:fn+2-fn} we obtain
+\end{proof}
+
 
 
  
@@ -276,9 +254,6 @@ Let $n \in \bN + 2$.
    Let $n \in \bN + 1$.
    Put $u_n = - 2 - n^{-1}$.
    The proof relies on Lemma~\ref{lem:fun-positive} and the following relation between $f_{n + 2}$ and $f_n$:
-   \begin{equation} \label{eq:fn+2-fn}
-   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 (\ttx - u_n) \,.
- \end{equation}
  Lemma~\ref{lem:fun-positive} ensures $f_n(u_n) > 0$,
  so by letting  $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn},
  we obtain
