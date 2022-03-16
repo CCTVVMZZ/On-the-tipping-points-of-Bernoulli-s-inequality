@@ -8,21 +8,17 @@
 
 \newcommand{\bZ}{\mathbb{Z}} 
 \newcommand{\bR}{\mathbb{R}} 
-\newcommand{\bN}[1]{\bZ_{\ge #1}} 
+\newcommand{\bN}{\mathbb{N}}
 \newcommand{\gtint}[1]{\left] #1, \infty \right[}
 \newcommand{\geint}[1]{\left[ #1, \infty \right[}
 \newcommand{\ltint}[1]{\left]- \infty, #1 \right[}
 \newcommand{\leint}[1]{\left]- \infty, #1 \right]}
-% \newcommand{\Rneg}{\left]- \infty, 0 \right[}
- %\newcommand{\Rnpos}{\left]- \infty, 0 \right]}
-% \newcommand{\Rnneg}{\left[0, \infty\right[}
-% \newcommand{\Rpos}{\left]0, \infty\right[}
 
 \newcommand{\ttx}{\mathtt{x}}
 
 \newtheorem{theorem}{Theorem}
 % \newtheorem{proposition}{Proposition}
-% \newtheorem{lemma}{Lemma}
+\newtheorem{lemma}{Lemma}
 
 \begin{document}
 
@@ -33,22 +29,28 @@ Put
 $$
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \, .
 $$
-For each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$; 
+The fundamental property of $f_n$ is:
+for each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$; 
 the latter inequality is usually called \emph{Bernoulli's inequality}.
-%Note  $f_n$ vanishes at~$0$. 
 For instance, we have 
 $f_0(\ttx) = f_1(\ttx) = 0$,
-$f_2(\ttx) = \ttx^2$,
-$$
-f_3(\ttx) = \ttx^3 + 3 \ttx = \ttx^2 (\ttx + 3) \,,
-$$
-and 
-$$
-f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
-$$
+$f_2(\ttx) = \ttx^2$, and
+\begin{equation} \label{eq:f3-t3}
+f_3(\ttx) = \ttx^3 + 3 \ttx = \ttx^2 (\ttx + 3) \,.
+\end{equation}
+% and 
+% $$
+% f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
+% $$
+ The following identities are not mentioned anywhere else in the paper but may be of interest to the reader:
+ $$
+ f_n (\ttx)
+ = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
+ = \ttx^2 \sum_{k = 1}^{n - 1}  \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
+ $$
 
 \begin{theorem} \label{thm:root-mult}
-  For each $n \in \bN{2}$,
+  For each $n \in \bN + 2$,
   $0$ is a double root of $f_n$ and $0$ is the only non-simple (complex) root of $f_n$.
 \end{theorem}
 
@@ -74,24 +76,17 @@ $$
    It follows that $0$ is the only non-simple root of $f_n$.
  \end{proof}
  
-Theorem~\ref{thm:root-mult} ensures that for every $x \in \bR$ and every integer $n \in \bN{2}$,
+Theorem~\ref{thm:root-mult} ensures that for every $x \in \bR$ and every $n \in \bN + 2$,
 the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
-(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross it).
- The following identities hold for every $n \in \bN{0}$ and may be of interest to the reader:
- $$
- f_n (\ttx)
- = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
- = \ttx^2 \sum_{k = 1}^{n - 1}  \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
- $$
+(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
 
 
 
- \begin{theorem} \label{thm:n-is-even}
-   For each even  $n \in \bN{2}$,
+ \begin{theorem} \label{thm:variation-even}
+   For each $n \in 2 \bN + 2$,
    $f_n$ is
-   decreasing on $\leint{0}$,
-   increasing on $\geint{0}$, and
-   positive on $\bR \setminus \{ 0 \}$.
+   decreasing on $\leint{0}$ and
+   increasing on $\geint{0}$.
  \end{theorem}
 
  \begin{proof}
@@ -109,7 +104,7 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
 
 
  \begin{theorem} \label{thm:variation-odd}
-   For each odd $n \in \bN{3}$, $f_n$ is
+   For each $n \in 2 \bN + 3$, $f_n$ is
    increasing on $\leint{- 2}$,
    decreasing on $[- 2, 0]$, and
    increasing on $\geint{0}$.
@@ -117,8 +112,9 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
 
  \begin{proof}
    Since $n - 1$ is an even positive integer,
-   the polynomial function from $\bR$ to itself associated with $\ttx^{n - 1}$ is decreasing on $\leint{0}$
-   and increasing on $\geint{0}$.
+   the function from $\bR$ to itself associated with the monomial $\ttx^{n - 1}$ is
+   decreasing on $\leint{0}$ and
+   increasing on $\geint{0}$.
    Hence, 
    Equation~\eqref{eq:deriv-fn} shows: 
    $f_n'$ is decreasing on $\leint{- 1}$,
@@ -130,11 +126,22 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
    positive on $\gtint{0}$.
    The desired result follows.
  \end{proof}
+
+ \begin{theorem}[Bernoulli's inequality]
+   \label{thm:Bernoulli}
+   For every $n \in \bN + 2$ and every $x \in \bR \setminus \{ 0 \}$ such that $n \in 2 \bN$ or $x \ge - 2$,
+   $f_n(x)$ is positive.
+ \end{theorem}
+
+ \begin{proof}
+   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
+ \end{proof}
+ 
  
  \begin{theorem} \label{thm:tipping-point}
-   For each odd  $n \in \bN{3}$,
+   For each odd  $n \in 2 \bN + 3$,
    there exists $t_n \in \ltint{- 2}$ such that $f_n$ is 
-   negative on $\left]- \infty, t_n \right[$
+   negative on $\gtint{t_n}$
    and
    positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
  \end{theorem} 
@@ -142,34 +149,37 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  \begin{proof}
    Since $f_n(- 1) = n - 1 > 0$ and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
    the intermediate value theorem ensures that there exists $t_n \in \leint{- 1}$ such that $f_n(t_n) = 0$.
-   Besides, it follows from Theorem~\ref{thm:variation-odd} that $f_n$ is larger than $f_n(0) = 0$  on
-   $\left[- 2, 0 \right[ \cup \gtint{0}$.
+   Besides, Theorem~\ref{thm:Bernoulli} ensures that
+   $f_n$ is positive on $\left[-2, 0 \right[ \cup \gtint{0}$.
    Therefore, $t_n$ belongs to $\ltint{- 2}$ and
    $f_n$ behaves on $\geint{- 2}$ as desired.
-   It remains to study $f_n$ on $\ltint{-2}$.
-   By Theorem~\ref{thm:variation-odd},
-   $f_n$ is increasing on that interval,
-   and thus $f_n$ is negative on $\ltint{t_n}$ and
+   It remains to study the sign of $f_n$ on $\ltint{-2}$.
+   Since $f_n$ is increasing on that interval by Theorem~\ref{thm:variation-odd},
+   $f_n$ is negative on $\ltint{t_n}$ and
    positive on $\left]t_n, - 2 \right[$.
  \end{proof}
 
- For each odd $n \in \bN{3}$,
+ For each odd $n \in 2 \bN + 3$,
  let $t_n$ be as in Theorem~\ref{thm:tipping-point}:
- $t_n \in \left]- \infty, - 2 \right[$, $f_n(t_n) = 0$, ${(1 + t_n)}^n = 1 + n t_n$,
+ $t_n \in \ltint{- 2}$, $f_n(t_n) = 0$, ${(1 + t_n)}^n = 1 + n t_n$,
  and 
  $$
  \left\{ x \in \bR : f_n(x) \ge 0 \right\}
  = \left\{ x \in \bR : {(1 + x)}^n \ge 1 + n x  \right\}
- = \left[t_n, \infty \right[ 
+ = \geint{t_n} 
  $$
  ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
   
  
  % For instance $t_3  = - 3$.
 
-
+ \begin{lemma}
+   For each $n \in \bN + 2$, $f_n(- 2 - n^{-1})$ is positive.
+ \end{lemma}
+ 
+ 
  \begin{theorem} [Had\v{z}iivanov and Prodanov \cite{MitrinovicAI,MitrinovicCNIA}] \label{thm:bulgare}
-   The following inequalities hold true for every odd $n \in \bN{3}$:
+   The following inequalities hold true for every $n \in 2 \bN + 3$:
    $$ - 3 \le t_n < t_{n + 2} < - 2 - \frac{1}{n} \,.
    $$
  \end{theorem}
