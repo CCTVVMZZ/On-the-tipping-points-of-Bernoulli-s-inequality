@@ -170,9 +170,9 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  = \geint{t_n} 
  $$
  ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
- For instance Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
+ For instance, Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
- Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
+both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
  
  \begin{theorem} \label{thm:HP-upper}
    For each $n \in 2 \bN + 3$, $t_n$ is less than $- 2 - n^{-1}$.
@@ -207,7 +207,7 @@ Let $n \in \bN + 2$.
  \end{theorem} 
 
  \begin{proof}
-   Straightforward computations yield
+   Straightforward computations yield 
    \begin{equation} \label{eq:fn+2-fn}
    f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 \left(\ttx - 2 - \frac{1}{n} \right) 
  \end{equation}
@@ -217,19 +217,44 @@ Let $n \in \bN + 2$.
 $$ 
 f_{n + 2} (t_n) = n t_n^2 \left(t_n - 2 - \frac{1}{n} \right) \, .
 $$
-Besides, Theorem~\ref{thm:HP-upper} ensures that the right-hand side of the latter equation is negative.
+Besides, Theorem~\ref{thm:HP-upper} ensures that the right-hand side of the latter equality is negative.
 It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
- \end{proof}
+\end{proof}
 
 
- \begin{theorem}
-   The sequence $\left( t_n \right)_{n \in 2 \bN + 3}$ converges to $- 2$.
- \end{theorem}
+Let $n \in \bN$.
+Put
+$$
+g_n(\ttx) = {(1 + x)}^n + 1  - n \ttx - 2 n
+$$
 
- \begin{proof}
-   Let $\epsilon \in \gtint{0}$.
- \end{proof}
- % For instance $t_3  = - 3$.
+$$
+f_n(- 2 - \ttx) = {(- 1)}^n {(1 + \ttx)}^n - 1 + n \ttx + 2 n
+  $$
+
+  $$
+  g_n(\ttx) = - f(- 2 - \ttx) 
+  $$
+
+  $$
+  {(1 + x)}^n \ge 1 + n x + \frac{n(n - 1)}{2} x^2 
+  $$
+  
+  $$
+  g_n(x) \ge  \frac{n(n - 1)}{2} x^2 - 2(n + 1) 
+  $$
+
+  $$
+ {(1 + x)}^n \le 1 + n x + 
+  $$
+
+
+ 
+
+ \bibliographystyle{plain}
+  \bibliography{bernoulli}
+
+\end{document}
 
 \begin{theorem}
   For each $n \in 2 \bN + 5$, $t_n$ is less than $- 2 - {(n - 2)}^{-1}$.
@@ -239,42 +264,3 @@ It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
   Let $n \in 2 \bN + 5$.
   By letting $\ttx = - 2 - n^{-1}$ in Equation~\eqref{eq:fn+2-fn} we obtain
 \end{proof}
-
-
-
- 
- \begin{theorem}[N.~Had\v{z}iivanov and I.~Prodanov \cite{MitrinovicAI,MitrinovicCNIA,MondP94,MitrinovicP93}] \label{thm:bulgare}
-   The following inequalities hold true for every $n \in 2 \bN + 3$:
-   $$
-   - 3 \le t_n < t_{n + 2} < - 2 - \frac{1}{n} \,.
-   $$
- \end{theorem}
- 
- \begin{proof}
-   Let $n \in \bN + 1$.
-   Put $u_n = - 2 - n^{-1}$.
-   The proof relies on Lemma~\ref{lem:fun-positive} and the following relation between $f_{n + 2}$ and $f_n$:
- Lemma~\ref{lem:fun-positive} ensures $f_n(u_n) > 0$,
- so by letting  $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn},
- we obtain
- $$
-   f_{n + 2} (u_n)  = {\left(1 + \frac{1}{n} \right)}^2 f_n(u_n) > 0 \, .
-  $$
-  Now, assume $n \in 2 \bN + 3$.
-  Then, we have
-  $t_{n + 2} < u_n$ because $f_{n + 2}(u_n) > 0$
-  and
-  $t_n < u_n$ because $f_n(u_n) > 0$.
-   Hence, by letting $\ttx = t_n$ in Equation~\eqref{eq:fn+2-fn},
-   we obtain
-   $$
-   f_{n + 2} (t_n)  = n t_n^2 (t_n - u_n) < 0 \,, 
-   $$
-   and consequently, $t_n < t_{n + 2}$.
-   Finally, Equation~\eqref{eq:f3-t3} shows $t_3 = - 3$.
- \end{proof}   
-
- \bibliographystyle{plain}
-  \bibliography{bernoulli}
-
-\end{document}
