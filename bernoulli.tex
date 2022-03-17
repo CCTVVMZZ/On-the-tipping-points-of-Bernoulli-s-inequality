@@ -173,7 +173,7 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  = \geint{t_n} 
  $$
  ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
- For instance, Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
+ Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
  both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
 Straightforward computations yield the following recurrence relation which is used as a lemma:
@@ -197,7 +197,7 @@ Straightforward computations yield the following recurrence relation which is us
    Since $u_{n - 2}$ not greater than $u_n$, $t_n$ is not greater than $u_n$,
    and thus $f_n(u_n)$ is non-negative.
    Therefore,  
-   by letting $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn}, we obtain (note that the rightmost term vanish)
+   by letting $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn}, we obtain (note that the rightmost term vanishes)
    $f_{n + 2}(u_n) = {( 1 + u_n )}^2 f_n(u_n) \ge 0$.
    It follows $t_{n + 2} \le u_n$, as desired.
  \end{proof}
@@ -211,14 +211,42 @@ Straightforward computations yield the following recurrence relation which is us
  \begin{proof}
  Let $n \in 2 \bN + 3$.
  By letting $\ttx = t_n$ in Equation~\eqref{eq:fn+2-fn}, we obtain
-$$ 
+ $$ 
 f_{n + 2} (t_n) = n t_n^2 \left(t_n - 2 - \frac{1}{n} \right) \, .
 $$
 Besides, Theorem~\ref{thm:HP-upper} ensures that the right-hand side of the latter equality is negative.
 It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
 \end{proof}
 
+For each $n \in 2 \bN + 5$, $t_n$ lies in $\left]- 3, - 2 \right[$ and the coefficients of $f_n$ are all integers,
+so the integral root theorem ensures that $t_n$ is irrational.
+
 \section{Our contribution}
+
+\begin{theorem}
+  For every $n \in 2 \bN + 3$, $t_n$ is greater than $- 2 - $.
+\end{theorem}
+
+\begin{proof}
+  Put
+  $$
+  g_n (\ttx) = {(1 + \ttx)}^n + 1 - 2 n - n x = f_n(\ttx) - 2 n + 2
+  $$
+  for every $n \in \bN$.
+  Since 
+  $$
+  f_n(- 2 - x)  = {(- 1)}^{n + 1}  {( 1 + \ttx)}^n - 1 + 2 n + n \ttx 
+  $$
+  $n \in 2 \bN + 1 $ implies $g_n(\ttx) = - f_n(- 2 - \ttx)$.
+
+  $$
+  {(1 + x)}^n \ge 1 + n x + \frac{(n - 1)n}{2}  x^2
+  $$
+  $$
+  g_n(x) \ge 2 - 2 n + \frac{(n - 1) n}{2} x^2 
+  $$
+  $g_n(x) = 0$ is equivalent to 
+\end{proof} 
 Let $n \in \bN$.
 Put
 $$
