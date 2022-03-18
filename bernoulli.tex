@@ -78,7 +78,8 @@ f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
    It follows that $0$ is the only non-simple root of $f_n$.
  \end{proof}
  
-Theorem~\ref{thm:root-mult} ensures that for every $x \in \bR$ and every $n \in \bN + 2$,
+ Theorem~\ref{thm:root-mult} ensures that
+for every $n \in \bN + 2$ and every $x \in \bR$, 
 the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
 (the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
 
@@ -163,16 +164,12 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
 
  For each $n \in 2 \bN + 3$,
  let $t_n$ be as in Theorem~\ref{thm:tipping-point}:
- % $t_n \in \ltint{- 2}$,
- % $f_n(t_n) = 0$,
- %${(1 + t_n)}^n = 1 + n t_n$,
-% and 
  $$
  \left\{ x \in \bR : f_n(x) \ge 0 \right\}
- %= \left\{ x \in \bR : {(1 + x)}^n \ge 1 + n x  \right\}
- = \geint{t_n} 
+ =
+ \geint{t_n} \,; 
  $$
- ($t_n$ is thus a \emph{tipping point} for Bernoulli's inequality).
+$t_n$ is thus a \emph{tipping point} for Bernoulli's inequality.
  Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
  both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
@@ -194,8 +191,7 @@ Straightforward computations yield the following recurrence relation which is us
    The assertion holds true for $n = 3$ because $u_1 = - 3$ and $f_3(- 3) = 0$.
    Let us now deal with the inductive step.
    Let $n \in 2 \bN + 3$ be such that $t_n \le u_{n - 2}$.
-   Since $u_{n - 2}$ not greater than $u_n$, $t_n$ is not greater than $u_n$,
-   and thus $f_n(u_n)$ is non-negative.
+   Since $u_{n - 2}$ not greater than $u_n$, $t_n$ is not greater than $u_n$, or, equivalently, $f_n(u_n)$ is non-negative.
    Therefore,  
    by letting $\ttx = u_n$ in Equation~\eqref{eq:fn+2-fn}, we obtain (note that the rightmost term vanishes)
    $f_{n + 2}(u_n) = {( 1 + u_n )}^2 f_n(u_n) \ge 0$.
@@ -223,58 +219,69 @@ so the integral root theorem ensures that $t_n$ is irrational.
 
 \section{Our contribution}
 
-\begin{theorem}
-  For every $n \in 2 \bN + 3$, $t_n$ is greater than $- 2 - $.
+
+\begin{proof}
+  Put $\epsilon_n = - t_n - 2$: $t_n = - 2 - \epsilon_n$.
+  Equality
+  $$
+  {(1 + t_n)}^n = 1 + n t_n 
+  $$
+  $$
+   {(1 + \epsilon_n)}^n  = - 1 + 2 n + n \epsilon_n 
+   $$
+
+   $$
+   2 n - 1 \le {(1 + \epsilon_n)}^n  \le  2 n 
+   $$
+
+   $$
+   \sqrt[n]{2 n - 1} - 1 \le \epsilon_n  \le \sqrt[n]{2 n} - 1
+   $$
+
+   $$
+   \exp(x) - 1 \ge x
+   $$
+   $$
+   \sqrt[n]{2n - 1} - 1 \ge \frac{\ln(2n - 1)}{n} \sim \frac{\ln(2n)}{n} 
+   $$
+
+   $$
+   \exp(x) - 1 \sim  x
+   $$
+   
+   $$
+   \sqrt[n]{2n \pm 1} - 1 \sim \frac{\ln(2n \pm 1)}{n} \sim \frac{\ln(2n)}{n} 
+   $$
+   
+\end{proof}
+Let $n \in \bN$.
+Straightforward computations yield
+$$
+f_n(- 2 - \ttx) = {(- 1)}^n {(1 + \ttx)}^n - 1 + 2n + n \ttx \, , 
+  $$
+whence 
+\begin{equation} \label{eq:fn-2-x-odd}
+  n \in 2 \bN + 1 \implies 
+ f_n(- 2 - \ttx) = 2n - 2 - f_n(\ttx)   \, .
+\end{equation} 
+ 
+\begin{theorem} \label{thm:lower-sqrt}
+  For every $n \in 2 \bN + 3$, $t_n$ is not less than $- 2 - 2 / \sqrt{n}$.
 \end{theorem}
 
 \begin{proof}
-  Put
+  Let $n \in 2 \bN + 3$.
+ Put $\epsilon_n = 2 / \sqrt{n}$.
+  Since $\epsilon_n \ge 0$,
+  the binomial theorem yields
   $$
-  g_n (\ttx) = {(1 + \ttx)}^n + 1 - 2 n - n x = f_n(\ttx) - 2 n + 2
+  f_n(\epsilon_n ) \ge \frac{1}{2} (n - 1) n \epsilon_n^2 = 2 n - 2 \,.
   $$
-  for every $n \in \bN$.
-  Since 
-  $$
-  f_n(- 2 - x)  = {(- 1)}^{n + 1}  {( 1 + \ttx)}^n - 1 + 2 n + n \ttx 
-  $$
-  $n \in 2 \bN + 1 $ implies $g_n(\ttx) = - f_n(- 2 - \ttx)$.
-
-  $$
-  {(1 + x)}^n \ge 1 + n x + \frac{(n - 1)n}{2}  x^2
-  $$
-  $$
-  g_n(x) \ge 2 - 2 n + \frac{(n - 1) n}{2} x^2 
-  $$
-  $g_n(x) = 0$ is equivalent to 
+  It follows $f_n(- 2 - \epsilon_n) \le 0$ by Equation~\eqref{eq:fn-2-x-odd}, whence $t_n \ge - 2 - \epsilon_n$.
 \end{proof} 
-Let $n \in \bN$.
-Put
-$$
-g_n(\ttx) = {(1 + x)}^n + 1  - n \ttx - 2 n
-$$
 
-$$
-f_n(- 2 - \ttx) = {(- 1)}^n {(1 + \ttx)}^n - 1 + n \ttx + 2 n
-  $$
+Note that Theorem~\ref{thm:lower-sqrt} ensures that $t_n$ approaches $- 2$ as $n$ approaches~$\infty$.
 
-  $$
-  g_n(\ttx) = - f(- 2 - \ttx) 
-  $$
-
-  $$
-  {(1 + x)}^n \ge 1 + n x + \frac{n(n - 1)}{2} x^2 
-  $$
-  
-  $$
-  g_n(x) \ge  \frac{n(n - 1)}{2} x^2 - 2(n + 1) 
-  $$
-
-  $$
- {(1 + x)}^n \le 1 + n x + 
-  $$
-
-
- 
 
  \bibliographystyle{plain}
   \bibliography{bernoulli}
