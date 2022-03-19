@@ -9,6 +9,7 @@
 \newcommand{\bZ}{\mathbb{Z}} 
 \newcommand{\bR}{\mathbb{R}} 
 \newcommand{\bN}{\mathbb{N}}
+\newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\gtint}[1]{\left] #1, \infty \right[}
 \newcommand{\geint}[1]{\left[ #1, \infty \right[}
 \newcommand{\ltint}[1]{\left]- \infty, #1 \right[}
@@ -51,6 +52,54 @@ f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 
  \section{Basic material}
  
+ \begin{theorem}[Bernoulli's inequality] \label{thm:Bernoulli}
+   For every $n \in \bN + 2$ and every $x \in \bR \setminus \{ 0 \}$ such that $n \in 2 \bN$ or $x \ge - 2$,
+   $f_n(x)$ is positive.
+ \end{theorem}
+
+ % $$
+ % {(1 + \ttx)}^n - 1 = \ttx \sum_{j = 0}^{n - 1} {(1 + \ttx)}^j 
+ % $$
+
+ % $$
+ % f_n(\ttx) = \ttx \sum_{j = 0}^{n - 1} \left( {(1 + \ttx)}^j - 1 \right) = \ttx^2 \sum_{j = 0}^
+ % $$
+ \begin{proof}
+   First, assume and $x \ge - 1$.
+   Then, ${(1 + x)}^n - 1$ has the same sign as~$x$.
+   Besides, straightforward computations show
+   $$
+   f_{m + 1}(\ttx) - f_m(\ttx) =  \left( {(1 + \ttx)}^m - 1 \right) \ttx 
+   $$
+   for every $m \in \bN$.
+   Therefore, the sequence $\left( f_m(x) \right)_{m \in \bN + 2}$ is increasing.
+   It follows $f_n(x) \ge f_2(x) = x^2 > 0$, as desired.
+   Second, assume $n \in 2 \bN$ and $x < - 1$.
+   On the one hand, we have 
+   $$
+   {(1 + \ttx)}^n = {(1 + (- 2 - \ttx))}^n \,,
+   $$
+   so straightforward computations yield 
+   $$
+   f_n(\ttx) = f_n(- 2 - \ttx) - 2n (\ttx + 1) \,.
+   $$
+   On the other hand,
+   $- 2 - x$ lies in $\geint{- 1}$
+   and
+   the previous discussion ensures that $f_n$ is non-negative on that interval, 
+   whence $f_n(- 2 - x) \ge 0$.
+   It follows
+   $f_n(x) \ge  - 2n (x + 1)  > 0$,
+   as desired.
+   Third and last, assume $n \in 2 \bN + 3$ and $- 2 \le x < - 1$.
+   Then,
+   we have ${(1 + x)}^n \ge 1  + x > 1 + n x$,
+   whence $f_n(x) > 0$, as desired.
+ \end{proof}
+ 
+ \begin{proof}
+   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
+ \end{proof}
 \begin{theorem} \label{thm:root-mult}
   For each $n \in \bN + 2$,
   $0$ is a double root of $f_n$ and $0$ is the only non-simple (complex) root of $f_n$.
@@ -129,16 +178,9 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
    positive on $\gtint{0}$.
    The desired result follows.
  \end{proof}
-
- \begin{theorem}[Bernoulli's inequality]
-   \label{thm:Bernoulli}
-   For every $n \in \bN + 2$ and every $x \in \bR \setminus \{ 0 \}$ such that $n \in 2 \bN$ or $x \ge - 2$,
-   $f_n(x)$ is positive.
- \end{theorem}
-
- \begin{proof}
-   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
- \end{proof}
+ 
+ Theorem~\ref{thm:Bernoulli} is an immediate corollary of Theorem \ref{thm:variation-even} and \ref{thm:variation-odd}.
+ 
 
  \section{Previous results} 
  
@@ -151,15 +193,13 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  \end{theorem} 
 
  \begin{proof}
-   Since $f_n(- 1) = n - 1 > 0$ and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
-   the intermediate value theorem ensures that there exists $t_n \in \leint{- 1}$ such that $f_n(t_n) = 0$.
-   Besides, Theorem~\ref{thm:Bernoulli} ensures that $f_n$ is positive on $\left[-2, 0 \right[ \cup \gtint{0}$.
-   Therefore, $t_n$ belongs to $\ltint{- 2}$ and
-   $f_n$ behaves on $\geint{- 2}$ as desired.
-   It remains to study the sign of $f_n$ on $\ltint{-2}$.
-   Since $f_n$ is increasing on that interval by Theorem~\ref{thm:variation-odd},
-   $f_n$ is negative on $\ltint{t_n}$ and
-   positive on $\left]t_n, - 2 \right[$.
+   Since
+   $$
+   f_n(- 2) = {(- 1)}^n - 1 + 2n  = 2n - 2 > 0
+   $$
+   and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
+   the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
+   The desired result now follows from Theorem~\ref{thm:variation-odd}.
  \end{proof}
 
  For each $n \in 2 \bN + 3$,
@@ -188,7 +228,7 @@ Straightforward computations yield the following recurrence relation which is us
   % For every $n \in 2 \bN + 3$, $t_n \le u_{n - 2}$ is equivalent to $f_n(u_{n - 2}) \ge 0$.
    Our task it to prove $t_n \le u_{n - 2}$ for every $n \in 2 \bN + 3$.
    We proceed by induction on~$n$.
-   The assertion holds true for $n = 3$ because $u_1 = - 3$ and $f_3(- 3) = 0$.
+   The assertion holds true for $n = 3$ because $t_3 = u_1 = - 3$.
    Let us now deal with the inductive step.
    Let $n \in 2 \bN + 3$ be such that $t_n \le u_{n - 2}$.
    Since $u_{n - 2}$ not greater than $u_n$, $t_n$ is not greater than $u_n$, or, equivalently, $f_n(u_n)$ is non-negative.
@@ -327,3 +367,15 @@ Note that Theorem~\ref{thm:lower-sqrt} ensures that $t_n$ approaches $- 2$ as $n
  f_{n + 2}\left(- 2 - \frac{1}{n} \right) = \left( 1 + \frac{1}{n} \right)^2 f_n\left( - 2 - \frac{1}{n} \right) \ge 0 \, . 
  $$
  \end{proof} 
+   Then, the previous discussion ensures that $f_{n / 2}$ is non-negative on $\geint{-1}$.
+   In particular, $f_{n / 2}(y) $ is non-negative for $y = {(1 + x)}^2 - 1$
+   (note that $y = 0$ is equivalent to $x = - 2$).
+   Besides, straightforward computations yield
+   $$
+   f_{2 m}(\ttx) = f_m({(1 + \ttx)}^2 - 1) + m \ttx^2 
+   $$
+   for every $m \in \bN$.
+   It follows
+   $$
+   f_n(x) = f_{n / 2}( y ) + \frac{n}{2} y^2 \ge \frac{n}{2} x^2 > 0
+   $$
