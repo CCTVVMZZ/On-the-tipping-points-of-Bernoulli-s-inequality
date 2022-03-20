@@ -25,84 +25,77 @@
 
 \sloppy
 
-Let $\ttx$ be an indeterminate over $\bR$ and let $n \in \bN$.
+Let $\bR$ denote the field of real numbers,
+let $\bN$ denote the set of all \emph{non-negative} integers, and 
+let $\ttx$ be an indeterminate over~$\bR$.
+Note that
+$$\bN + 2 = \bN \setminus \{ 0, 1 \} = (2 \bN + 2) \cup (2 \bN + 3) \, .$$
+\section{Introduction}
+
 Put
 $$
-f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \, .
+f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \,.
 $$
-The fundamental property of $f_n$ is:
-for each $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$. 
-The latter inequality is usually called \emph{Bernoulli's inequality}.
-For $n \in \{ 0, 1, 2, 3 \}$, we have 
+for each $n \in \bN$.
+For instance, we have 
 $f_0(\ttx) = f_1(\ttx) = 0$,
 $f_2(\ttx) = \ttx^2$, and
 \begin{equation} \label{eq:f3-t3}
 f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 \end{equation}
-% and 
-% $$
-% f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
-% $$
- The following identities are not mentioned anywhere else in the paper but may be of interest to the reader:
- $$
- f_n (\ttx)
- = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
- = \ttx^2 \sum_{k = 1}^{n - 1}  \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
- $$
+The fundamental property of our polynomials is
+that the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
+$$
+f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
+$$ 
+The latter inequality is called \emph{Bernoulli's inequality}.
+Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
 
- \section{Basic material}
- 
- \begin{theorem}[Bernoulli's inequality] \label{thm:Bernoulli}
+ \begin{theorem}%[Bernoulli's inequality]
+   \label{thm:Bernoulli}
    For every $n \in \bN + 2$ and every $x \in \bR \setminus \{ 0 \}$ such that $n \in 2 \bN$ or $x \ge - 2$,
    $f_n(x)$ is positive.
  \end{theorem}
 
- % $$
- % {(1 + \ttx)}^n - 1 = \ttx \sum_{j = 0}^{n - 1} {(1 + \ttx)}^j 
- % $$
-
- % $$
- % f_n(\ttx) = \ttx \sum_{j = 0}^{n - 1} \left( {(1 + \ttx)}^j - 1 \right) = \ttx^2 \sum_{j = 0}^
- % $$
  \begin{proof}
-   First, assume and $x \ge - 1$.
+   First, assume $x \ge - 1$.
    Then, ${(1 + x)}^n - 1$ has the same sign as~$x$.
-   Besides, straightforward computations show
+   Besides, straightforward computations yield
    $$
    f_{m + 1}(\ttx) - f_m(\ttx) =  \left( {(1 + \ttx)}^m - 1 \right) \ttx 
    $$
    for every $m \in \bN$.
    Therefore, the sequence $\left( f_m(x) \right)_{m \in \bN + 2}$ is increasing.
    It follows $f_n(x) \ge f_2(x) = x^2 > 0$, as desired.
-   Second, assume $n \in 2 \bN$ and $x < - 1$.
-   On the one hand, we have 
-   $$
-   {(1 + \ttx)}^n = {(1 + (- 2 - \ttx))}^n \,,
-   $$
-   so straightforward computations yield 
-   $$
-   f_n(\ttx) = f_n(- 2 - \ttx) - 2n (\ttx + 1) \,.
-   $$
-   On the other hand,
-   $- 2 - x$ lies in $\geint{- 1}$
-   and
-   the previous discussion ensures that $f_n$ is non-negative on that interval, 
-   whence $f_n(- 2 - x) \ge 0$.
-   It follows
-   $f_n(x) \ge  - 2n (x + 1)  > 0$,
-   as desired.
+   Second, assume $n \in 2 \bN$ and $x \le - 1$.
+   Then, ${(1 + x)}^n$ is non-negative and $1 + n x$ is not greater than $1 - n$.
+   It follows $f_n(x) \ge - (1 + n x) \ge n - 1 > 0$, as desired.
    Third and last, assume $n \in 2 \bN + 3$ and $- 2 \le x < - 1$.
    Then,
    we have ${(1 + x)}^n \ge 1  + x > 1 + n x$,
    whence $f_n(x) > 0$, as desired.
  \end{proof}
- 
+
+ \begin{theorem} \label{thm:Bernoulli-non-strict}
+   For each $n \in \bN$, $f_n$ is non-negative on $\geint{- 2}$.
+ \end{theorem}
+
  \begin{proof}
-   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
+   The desired result is an immediate corollary of Theorem~\ref{thm:Bernoulli}.
  \end{proof}
+
+ %Theorems \ref{thm:Bernoulli} and \ref{thm:Bernoulli-non-strict} are folko
+ 
+ \section{Calculus stuff}
+
+ For each $n \in \bN + 2$, straightforward computations yield:
+ Since $f_n(\ttx - 1) = \ttx^n - n \ttx + n - 1$ is the sum ofcan  
+ % \begin{proof}
+ %   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
+ % \end{proof}
 \begin{theorem} \label{thm:root-mult}
   For each $n \in \bN + 2$,
-  $0$ is a double root of $f_n$ and $0$ is the only non-simple (complex) root of $f_n$.
+  $0$ is a double root of $f_n$ and $0$ the only non-simple (complex) root of $f_n$.
 \end{theorem}
 
 \begin{proof}
@@ -131,8 +124,6 @@ f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 for every $n \in \bN + 2$ and every $x \in \bR$, 
 the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
 (the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
-
-
 
  \begin{theorem} \label{thm:variation-even}
    For each $n \in 2 \bN + 2$,
@@ -186,34 +177,28 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  
  \begin{theorem} \label{thm:tipping-point}
    For each odd  $n \in 2 \bN + 3$,
-   there exists $t_n \in \ltint{- 2}$ such that $f_n$ is 
-   negative on $\gtint{t_n}$
-   and
-   positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
+   there exists $t_n \in \ltint{- 2}$ such that
+ \begin{equation} \label{eq:def-tn}
+ \left\{ x \in \bR : f_n(x) \ge 0 \right\}
+ =
+ \geint{t_n} \,. 
+ \end{equation} 
  \end{theorem} 
 
  \begin{proof}
-   Since
-   $$
-   f_n(- 2) = {(- 1)}^n - 1 + 2n  = 2n - 2 > 0
-   $$
-   and since $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$,
-   the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
-   The desired result now follows from Theorem~\ref{thm:variation-odd}.
+   By Theorem~\ref{thm:variation-odd},  $f_n$ is decreasing on $[- 2, 0]$,
+   whence   $f_n(- 2) > f_n(0) = 0$.
+   Moreover, $f_n(x)$ is asymptotically equivalent to $x^n$ as $x$ approaches $\pm \infty$,
+   and thus $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
+   Therefore, the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
+   It follows from Theorem~\ref{thm:variation-odd} that Equation~\eqref{eq:def-tn} holds true.
  \end{proof}
 
  For each $n \in 2 \bN + 3$,
  let $t_n$ be as in Theorem~\ref{thm:tipping-point}:
- $$
- \left\{ x \in \bR : f_n(x) \ge 0 \right\}
- =
- \geint{t_n} \,; 
- $$
-$t_n$ is thus a \emph{tipping point} for Bernoulli's inequality.
+ $t_n$ is a \emph{tipping point} for Bernoulli's inequality.
  Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
- In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
- both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
-Straightforward computations yield the following recurrence relation which is used as a lemma:
+ Straightforward computations yield the following recurrence relation which is used as a lemma:
  \begin{equation} \label{eq:fn+2-fn}
    f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 \left(\ttx + 2 + \frac{1}{n} \right)
  \end{equation}
@@ -225,7 +210,6 @@ Straightforward computations yield the following recurrence relation which is us
 
  \begin{proof}
    Put $u_n = - 2 - n^{-1}$ for every $n \in \bN + 1$.
-  % For every $n \in 2 \bN + 3$, $t_n \le u_{n - 2}$ is equivalent to $f_n(u_{n - 2}) \ge 0$.
    Our task it to prove $t_n \le u_{n - 2}$ for every $n \in 2 \bN + 3$.
    We proceed by induction on~$n$.
    The assertion holds true for $n = 3$ because $t_3 = u_1 = - 3$.
@@ -256,9 +240,44 @@ It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
 
 For each $n \in 2 \bN + 5$, $t_n$ lies in $\left]- 3, - 2 \right[$ and the coefficients of $f_n$ are all integers,
 so the integral root theorem ensures that $t_n$ is irrational.
+ In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
+ both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
 
 \section{Our contribution}
 
+\begin{theorem}
+  Let $a \in \gtint{0}$ and let $b \in \bR$.
+ As $x$ approaches $\infty$, 
+ ${(a x + b)}^{1 / x} - 1$
+ and
+ $x^{-1} \ln x$ are asymptotically equivalent.
+\end{theorem}
+
+\begin{proof}
+  
+  $$
+  {(a x + b)}^{1 / x} - 1 = \exp \left( \frac{\ln (a x + b)}{x} \right) - 1 \ge   \frac{\ln (a x + b)}{x} 
+  $$
+  
+  $$
+  \exp(y) = 1 + y + \frac{1}{2} y^2 + O(y^3)  
+  $$
+
+  $$
+  \ln(1 + y) = O(y) 
+  $$
+
+  $$
+  \ln(a x + b) = \ln (a x) + \ln \left(1 +  \frac{b}{a x} \right) = \ln(a x) + O \left( \frac{1} {x} \right)
+  $$
+
+  $$
+   \frac{\ln(ax + b)}{x} = \frac{\ln(a x)}{x} + O \left( \frac{1}{x^2} \right)
+  $$
+  $$
+  {(a x + b)}^{1 / x} = \exp \left( \frac{\ln( a x + b)}{x}  \right) = 1 + 
+  $$
+\end{proof} 
 
 \begin{proof}
   Put $\epsilon_n = - t_n - 2$: $t_n = - 2 - \epsilon_n$.
@@ -379,3 +398,14 @@ Note that Theorem~\ref{thm:lower-sqrt} ensures that $t_n$ approaches $- 2$ as $n
    $$
    f_n(x) = f_{n / 2}( y ) + \frac{n}{2} y^2 \ge \frac{n}{2} x^2 > 0
    $$
+and 
+$$
+f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
+$$
+ The following identities are not mentioned anywhere else in the paper but may be of interest to the reader:
+ $$
+ f_n (\ttx)
+ = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
+ = \ttx^2 \sum_{k = 1}^{n - 1} \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
+ $$
+for every $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$. 
