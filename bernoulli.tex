@@ -26,34 +26,24 @@
 
 \sloppy
 
-Let $\bR$ denote the field of real numbers and let $\bN$ denote the set of all \emph{non-negative} integers.
-The aim of this paper is to study 
-$$
-B = \left\{ (n, x) \in \bN \times \bR : {(1 + x)}^n \ge 1 + n x \right\} \, . 
-$$
-Let $\ttx$ denote an indeterminate over~$\bR$.
+Let $\bR$ denote the field of real numbers,
+let $\bN$ denote the set of all \emph{non-negative} integers, and 
+let $\ttx$ denote an indeterminate over~$\bR$.
 For each $n \in \bN$, let $f_n$ be the polynomial with integer coefficients defined by:
 \begin{equation} \label{eq:def-fn}
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx  \,.
 \end{equation}
-The fundamental property of the $f_n$'s is  
+The fundamental property of our polynomials is
+that the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
 $$
-B = \left\{ (n, x) \in \bN \times \bR : f_n(x) \ge 0 \right\} \, . 
-$$
-% The fundamental property of our polynomials is
-% that the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
-% $$
-% f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
-% $$ 
-%The latter inequality is called \emph{Bernoulli's inequality}.
-%Hence, studying Bernoulli's inequality is the same as studying the signs of the $f_n$'s.
-For each $n \in \bN$, the first and second derivatives of $f_n$ are given by
+f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
+$$ 
+The latter inequality is called \emph{Bernoulli's inequality}.
+Hence, studying Bernoulli's inequality is studying the signs and the roots of the $f_n$'s.
+
+For each $n \in \bN$, the derivative of $f_n$ is  given by
 \begin{equation} \label{eq:deriv-fn} 
-  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) 
-\end{equation}
-and
-\begin{equation} \label{eq:deriv-second-fn}
-f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
+  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) \, .
 \end{equation}
 
 \begin{theorem} \label{thm:root-mult}
@@ -62,7 +52,11 @@ f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
 \end{theorem}
 
 \begin{proof}
-  By letting $\ttx = 0$ in Equations \eqref{eq:def-fn}, \eqref{eq:deriv-fn}, and \eqref{eq:deriv-second-fn},
+  Straightforward computations yield the second derivative of $f_n$:
+\begin{equation} \label{eq:deriv-second-fn}
+f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
+\end{equation}
+  Now, by letting $\ttx = 0$ in Equations \eqref{eq:def-fn}, \eqref{eq:deriv-fn}, and \eqref{eq:deriv-second-fn},
   we obtain 
   $$
   f_n(0) = f_n'(0) = 0 \ne n (n - 1) = f_n''(0) \, ,
@@ -80,7 +74,6 @@ f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
 for every $n \in \bN + 2$ and every $x \in \bR$, 
 the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
 (the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
-A simple examination of Equation~\eqref{eq:deriv-fn} is enough to determine the sign of $f_n'$ for every $n \in \bN + 2$:
 
 \begin{theorem} \label{thm:variation}
     For each $n \in 2 \bN + 2$,
@@ -93,26 +86,38 @@ A simple examination of Equation~\eqref{eq:deriv-fn} is enough to determine the 
    positive on $\gtint{0}$.
  \end{theorem}
 
- 
-For instance, we have 
-$f_0(\ttx) = f_1(\ttx) = 0$,
-$f_2(\ttx) = \ttx^2$,
-\begin{equation} \label{eq:f3-t3}
-f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
-\end{equation}
-Note that
-$$\bN + 2 = \bN \setminus \{ 0, 1 \} = (2 \bN + 2) \cup (2 \bN + 3) \, .$$
-The following two theorems are immediate corollaries of Theorem~\ref{thm:variation}:
+ \begin{proof}
+   The desired result follows from a simple examination of Equation~\eqref{eq:deriv-fn}.
+\end{proof} 
 
  \begin{theorem}%[Bernoulli's inequality]
    \label{thm:Bernoulli}
-   For every $n \in \bN + 2$ and every $x \in \bR \setminus \{ 0 \}$ such that $n \in 2 \bN$ or $x \ge - 2$,
-   $f_n(x)$ is positive.
-   For every $n \in \bN$ and every $x \in \geint{-2}$, $f_n(x)$ is non-negative.
+   For each $n \in \{ 1 \} \cup 2 \bN$,
+   $f_n(x)$ is non-negative on~$\bR$. 
+   For each  $n \in 2 \bN + 3$,
+   there exists $t_n \in  \ltint{-2}$
+   such that $f_n$ is negative on $\ltint{t_n}$ and non-negative on $\geint{t_n}$.
  \end{theorem}
-
- Theorem~\ref{thm:Bernoulli} shows  
  
+ \begin{proof}
+   First, the desired result holds true for $n \in \{ 0, 1 \}$ because $f_0(\ttx) = f_1(\ttx) = 0$.
+   Second, let us assume $n \in  2 \bN + 2$.
+   It then follows from Theorem~\ref{thm:variation} that 
+   $f_n$ is decreasing of $\leint{0}$ and increasing on $\geint{0}$.
+   Therefore, $f_n$ attains its minimum at~$0$.
+   Since $f_n(0) = 0$, $f_n$ is non-negative on~$\bR$.
+   Third and last, assume $n \in 2 \bN + 3$.
+   It then follows from Theorem~\ref{thm:variation} that
+   the restriction of $f_n$ to $\geint{-2}$ attains its minimum at $0$
+   and nowhere else.
+   Therefore, $f_n$ is non-negative on $\geint{- 2}$ and $f_n(- 2)$ is positive.
+   Besides, $f_n(x)$ is asymptotically equivalent to $x^n$ as $x$ approaches $\pm \infty$,
+   and thus $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
+   Hence, the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
+   Since $f_n$ is increasing on $\ltint{- 2}$ by Theorem~\ref{thm:variation},
+   $f_n$ is negative on $\ltint{t_n}$ and non-negative on $[t_n, - 2]$.
+ \end{proof}
+
 \begin{theorem} \label{thm:increasing-fn}
   For each $x \in \left]- 2, 0 \right[ \cup \gtint{0}$,
   the sequence $\left( f_n(x) \right)_{n \in \bN + 1}$ is increasing.
@@ -122,11 +127,25 @@ The following two theorems are immediate corollaries of Theorem~\ref{thm:variati
   Let $n \in \bN + 1$.
  Straightforward computations yield  
  $$
- f_{n+ 1} (x) - f_n(x) = \frac{1}{n + 1}  \ttx f_{n + 1}'(\ttx) 
+ f_{n+ 1} (\ttx) - f_n(\ttx) = \frac{\ttx}{n + 1}  f_{n + 1}'(\ttx) 
  $$
  and
- Theorem~\ref{thm:variation} ensures that $\ttx f_{n + 1}(\ttx)$ is positive on $\left]- 2, 0 \right[ \cup \gtint{0}$.
+ Theorem~\ref{thm:variation} ensures that $\ttx f_{n + 1}'(\ttx)$ is positive on $\left]- 2, 0 \right[ \cup \gtint{0}$.
 \end{proof} 
+
+% The orem~\ref{thm:Bernoulli} yield
+ % $$
+ % B=  \left( \{ 1 \} \cup 2 \bN \right) \times \bR \cup \bigcup_{n \in 2 \bN + 3}  \{ n \} \times \geint{t_n} \, .
+ % $$
+ \begin{equation} \label{eq:f3-t3}
+f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
+\end{equation}
+Note that
+$$\bN + 2 = \bN \setminus \{ 0, 1 \} = (2 \bN + 2) \cup (2 \bN + 3) \, .$$
+The following two theorems are immediate corollaries of Theorem~\ref{thm:variation}:
+ Theorem~\ref{thm:Bernoulli} shows  
+
+ 
 
 
  \begin{proof}
