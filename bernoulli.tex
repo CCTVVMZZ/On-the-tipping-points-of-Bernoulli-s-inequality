@@ -16,6 +16,7 @@
 \newcommand{\leint}[1]{\left]- \infty, #1 \right]}
 
 \newcommand{\ttx}{\mathtt{x}}
+\newcommand{\tty}{\mathtt{y}}
 
 \newtheorem{theorem}{Theorem}
 % \newtheorem{proposition}{Proposition}
@@ -30,16 +31,16 @@ let $\bN$ denote the set of all \emph{non-negative} integers, and
 let $\ttx$ be an indeterminate over~$\bR$.
 Note that
 $$\bN + 2 = \bN \setminus \{ 0, 1 \} = (2 \bN + 2) \cup (2 \bN + 3) \, .$$
+
 \section{Introduction}
 
 Put
 $$
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx \,.
 $$
-for each $n \in \bN$.
-For instance, we have 
+for each $n \in \bN$. For instance, we have 
 $f_0(\ttx) = f_1(\ttx) = 0$,
-$f_2(\ttx) = \ttx^2$, and
+$f_2(\ttx) = \ttx^2$,
 \begin{equation} \label{eq:f3-t3}
 f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 \end{equation}
@@ -49,7 +50,35 @@ $$
 f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
 $$ 
 The latter inequality is called \emph{Bernoulli's inequality}.
-Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
+Hence, studying Bernoulli's inequality is the same as studying the signs of the $f_n$'s.
+
+
+\begin{theorem}
+  For each $x \in \left]- 2, 0 \right[ \cup \gtint{0}$,
+  the sequence $\left( f_n(x) \right)_{n \in \bN + 1}$ is increasing.
+\end{theorem} 
+
+\begin{proof}
+  Let $x \in \left]- 2, 0 \right[ \cup \gtint{0}$ and let $n \in \bN + 1$.
+  Put $y = 1 + x$.
+  Clearly,
+  $x \in \left]- 2, 0 \right[$ implies $1 > \abs{y} \ge \abs{y}^n \ge y^n$
+  and
+  $x \in \gtint{0}$ implies $1 < y \le y^n$,
+  so $x$ and $y^n - 1$ have the same sign.
+  % Clearly, $x \in \left]- 2, 0 \right[$ implies $\abs{y}^n < 1$ and
+  % $x \in \gtint{0}$ implies ${(1 + x)}^n > 1$,
+  % so ${(1 + x)}^n - 1$ and $x$ have the same sign.
+Besides, straightforward computations yield 
+   $$
+   f_{n + 1}(\ttx) - f_n(\ttx)
+   = x  \left( {(1 + \ttx)}^n - 1 \right) \,,
+   $$
+   whence 
+   $$f_{n + 1}(x) - f_n(x) = x (y^n - 1) >  0\,,
+   $$
+   as desired.
+\end{proof} 
 
  \begin{theorem}%[Bernoulli's inequality]
    \label{thm:Bernoulli}
@@ -59,15 +88,15 @@ Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
 
  \begin{proof}
    First, assume $x \ge - 1$.
-   Then, ${(1 + x)}^n - 1$ has the same sign as~$x$.
+   Then, ${(1 + x)}^m - 1$ has the same sign as $x$ for every $m \in \bN + 1$.
    Besides, straightforward computations yield
    $$
    f_{m + 1}(\ttx) - f_m(\ttx) =  \left( {(1 + \ttx)}^m - 1 \right) \ttx 
    $$
    for every $m \in \bN$.
-   Therefore, the sequence $\left( f_m(x) \right)_{m \in \bN + 2}$ is increasing.
-   It follows $f_n(x) \ge f_2(x) = x^2 > 0$, as desired.
-   Second, assume $n \in 2 \bN$ and $x \le - 1$.
+   Therefore, the sequence $\left( f_m(x) \right)_{m \in \bN + 1}$ is increasing.
+   It follows $f_n(x) > f_1(x) =  0$, as desired.
+   Second, assume $n \in 2 \bN + 2$ and $x \le - 1$.
    Then, ${(1 + x)}^n$ is non-negative and $1 + n x$ is not greater than $1 - n$.
    It follows $f_n(x) \ge - (1 + n x) \ge n - 1 > 0$, as desired.
    Third and last, assume $n \in 2 \bN + 3$ and $- 2 \le x < - 1$.
@@ -75,24 +104,66 @@ Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
    we have ${(1 + x)}^n \ge 1  + x > 1 + n x$,
    whence $f_n(x) > 0$, as desired.
  \end{proof}
+ 
 
  \begin{theorem} \label{thm:Bernoulli-non-strict}
-   For each $n \in \bN$, $f_n$ is non-negative on $\geint{- 2}$.
+   For every $n \in \bN$ and every $x \in \geint{-2}$, $f_n(x)$ is non-negative.
  \end{theorem}
 
  \begin{proof}
    The desired result is an immediate corollary of Theorem~\ref{thm:Bernoulli}.
  \end{proof}
 
- %Theorems \ref{thm:Bernoulli} and \ref{thm:Bernoulli-non-strict} are folko
+
+ \begin{theorem}
+   $$
+  \ttx^n - \tty^n
+   =
+   (\ttx - \tty) \sum_{k = 0}^{n - 1} \ttx^{n - 1 - k}\tty^k 
+   $$
+   
+   $$
+   f_n(\ttx) - f_n(\tty)
+    = 
+   {(1 + \ttx)}^n - {(1 + \tty)}^n - n (\ttx - \tty)
+   $$
+   $$
+   \sum_{k = 0}^{n - 1} \left(  {(1 + \ttx)}^{n - 1 - k}{(1 + \tty)}^k - 1  \right)
+   $$
+ \end{theorem}
+
+ \
+ 
+
  
  \section{Calculus stuff}
 
- For each $n \in \bN + 2$, straightforward computations yield:
- Since $f_n(\ttx - 1) = \ttx^n - n \ttx + n - 1$ is the sum ofcan  
- % \begin{proof}
- %   The desired result is an immediate corollary of Theorems \ref{thm:variation-even} and \ref{thm:variation-odd}.
- % \end{proof}
+ For each $n \in \bN + 2$,
+ straightforward computations yield
+\begin{equation} \label{eq:deriv-fn} 
+  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) \, , 
+  \end{equation}
+  so the sign of $f_n'$ is easy to determine:
+  \begin{theorem} \label{thm:variation}
+    % \begin{itemize}
+    %   \item 
+    For each $n \in 2 \bN + 2$,
+    $f_n'$ is
+    negative on $\ltint{0}$ and
+    positive on $\gtint{0}$.
+ %\item
+   For each $n \in 2 \bN + 3$, $f_n'$ is
+   positive on $\ltint{- 2}$,
+   negative on $\left]- 2, 0 \right[$, and
+   positive on $\gtint{0}$.
+% \end{itemize}
+\end{theorem}
+
+Theorem~\ref{thm:Bernoulli} is an immediate corollary of Theorem~\ref{thm:variation}.
+ $$
+  f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \,.
+  $$
+
 \begin{theorem} \label{thm:root-mult}
   For each $n \in \bN + 2$,
   $0$ is a double root of $f_n$ and $0$ the only non-simple (complex) root of $f_n$.
@@ -123,7 +194,6 @@ Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
  Theorem~\ref{thm:root-mult} ensures that
 for every $n \in \bN + 2$ and every $x \in \bR$, 
 the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
-(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
 
  \begin{theorem} \label{thm:variation-even}
    For each $n \in 2 \bN + 2$,
@@ -146,12 +216,6 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
  \end{proof}
 
 
- \begin{theorem} \label{thm:variation-odd}
-   For each $n \in 2 \bN + 3$, $f_n$ is
-   increasing on $\leint{- 2}$,
-   decreasing on $[- 2, 0]$, and
-   increasing on $\geint{0}$.
- \end{theorem}
 
  \begin{proof}
    Since $n - 1$ is an even positive integer,
@@ -170,7 +234,6 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
    The desired result follows.
  \end{proof}
  
- Theorem~\ref{thm:Bernoulli} is an immediate corollary of Theorem \ref{thm:variation-even} and \ref{thm:variation-odd}.
  
 
  \section{Previous results} 
