@@ -24,15 +24,26 @@
 
 \begin{document}
 
+\title{On the tipping points of Bernoulli's inequality}
+\author{Charlot Colmes}
+\maketitle 
+
 \sloppy
 
 Let $\bR$ denote the field of real numbers,
 let $\bN$ denote the set of all \emph{non-negative} integers, and 
 let $\ttx$ denote an indeterminate over~$\bR$.
+
+\section{Introduction}
+
 For each $n \in \bN$, let $f_n$ be the polynomial with integer coefficients defined by:
 \begin{equation} \label{eq:def-fn}
 f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx  \,.
 \end{equation}
+For instance, we have
+$f_0(\ttx) = f_1(\ttx) = 0$,
+$f_2(\ttx) = \ttx^2$,
+$f_3(\ttx) = \ttx^3 + 3 \ttx^2$, and $f_4(\ttx) = \ttx^4 + 4 \ttx^3  + 6 \ttx^2$.
 The fundamental property of our polynomials is
 that the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
 $$
@@ -46,40 +57,12 @@ For each $n \in \bN$, the derivative of $f_n$ is  given by
   f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) \, .
 \end{equation}
 
-\begin{theorem} \label{thm:root-mult}
-  For each $n \in \bN + 2$,
-  $0$ is a double root of $f_n$ and $0$ the only non-simple (complex) root of $f_n$.
-\end{theorem}
-
-\begin{proof}
-  Straightforward computations yield the second derivative of $f_n$:
-\begin{equation} \label{eq:deriv-second-fn}
-f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
-\end{equation}
-  Now, by letting $\ttx = 0$ in Equations \eqref{eq:def-fn}, \eqref{eq:deriv-fn}, and \eqref{eq:deriv-second-fn},
-  we obtain 
-  $$
-  f_n(0) = f_n'(0) = 0 \ne n (n - 1) = f_n''(0) \, ,
-  $$
-  whence $0$ is a double root of $f_n$.
-  In addition, $f_n$ and its derivative satisfy 
-   $$
-   (1 + \ttx) f_n'(\ttx) - n f_n(\ttx) = n (n - 1) \ttx \, ,
-   $$
-   so for every complex number $z$, $f_n(z) = f_n'(z) = 0$ implies $z = 0$.
-   It follows that $0$ is the only non-simple root of $f_n$.
- \end{proof}
- 
- Theorem~\ref{thm:root-mult} ensures that
-for every $n \in \bN + 2$ and every $x \in \bR$, 
-the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
-(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
 
 \begin{theorem} \label{thm:variation}
-    For each $n \in 2 \bN + 2$,
-    $f_n'$ is
-    negative on $\ltint{0}$ and
-    positive on $\gtint{0}$.
+   For each $n \in 2 \bN + 2$,
+   $f_n'$ is
+   negative on $\ltint{0}$ and
+   positive on $\gtint{0}$.
    For each $n \in 2 \bN + 3$, $f_n'$ is
    positive on $\ltint{- 2}$,
    negative on $\left]- 2, 0 \right[$, and
@@ -92,193 +75,52 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
 
  \begin{theorem}%[Bernoulli's inequality]
    \label{thm:Bernoulli}
-   For each $n \in \{ 1 \} \cup 2 \bN$,
-   $f_n(x)$ is non-negative on~$\bR$. 
+   For each $n \in 2 \bN + 2$,
+   $f_n(x)$ is positive on $\bR \setminus \{ 0 \}$. 
    For each  $n \in 2 \bN + 3$,
    there exists $t_n \in  \ltint{-2}$
-   such that $f_n$ is negative on $\ltint{t_n}$ and non-negative on $\geint{t_n}$.
+   such that $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
  \end{theorem}
  
  \begin{proof}
-   First, the desired result holds true for $n \in \{ 0, 1 \}$ because $f_0(\ttx) = f_1(\ttx) = 0$.
-   Second, let us assume $n \in  2 \bN + 2$.
+   First,  assume $n \in  2 \bN + 2$.
    It then follows from Theorem~\ref{thm:variation} that 
-   $f_n$ is decreasing of $\leint{0}$ and increasing on $\geint{0}$.
-   Therefore, $f_n$ attains its minimum at~$0$.
-   Since $f_n(0) = 0$, $f_n$ is non-negative on~$\bR$.
-   Third and last, assume $n \in 2 \bN + 3$.
+   $f_n$ is decreasing on $\leint{0}$ and increasing on $\geint{0}$.
+   Therefore, $f_n$ attains its minimum at $0$ and nowhere else.
+   Since $f_n(0) = 0$, $f_n$ is positive on $\bR \setminus \{ 0 \}$.
+   Now, assume $n \in 2 \bN + 3$.
    It then follows from Theorem~\ref{thm:variation} that
    the restriction of $f_n$ to $\geint{-2}$ attains its minimum at $0$
    and nowhere else.
-   Therefore, $f_n$ is non-negative on $\geint{- 2}$ and $f_n(- 2)$ is positive.
-   Besides, $f_n(x)$ is asymptotically equivalent to $x^n$ as $x$ approaches $\pm \infty$,
-   and thus $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
-   Hence, the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
-   Since $f_n$ is increasing on $\ltint{- 2}$ by Theorem~\ref{thm:variation},
-   $f_n$ is negative on $\ltint{t_n}$ and non-negative on $[t_n, - 2]$.
+   Therefore, $f_n$ is positive on $\left[- 2, 0 \right[ \cup \gtint{0}$.
+   Moreover,
+   $f_n$ is a polynomial of odd degree $n$, so $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
+   Hence,
+   the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
+   Since $f_n$ is increasing on $\leint{- 2}$ by Theorem~\ref{thm:variation},
+   $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, - 2 \right]$.
+   It follows that $f_n$ is positive on  $\left]t_n, - 2 \right] \cup \left[- 2, 0 \right[ \cup \gtint{0} = \left]t_n, 0 \right[ \cup \gtint{0}$, as desired.
  \end{proof}
 
-\begin{theorem} \label{thm:increasing-fn}
-  For each $x \in \left]- 2, 0 \right[ \cup \gtint{0}$,
-  the sequence $\left( f_n(x) \right)_{n \in \bN + 1}$ is increasing.
-\end{theorem} 
+ For each $n \in 2 \bN + 3$, 
+ $t_n$ is a \emph{tipping point} for Bernoulli's inequality.
 
-\begin{proof}
-  Let $n \in \bN + 1$.
- Straightforward computations yield  
- $$
- f_{n+ 1} (\ttx) - f_n(\ttx) = \frac{\ttx}{n + 1}  f_{n + 1}'(\ttx) 
- $$
- and
- Theorem~\ref{thm:variation} ensures that $\ttx f_{n + 1}'(\ttx)$ is positive on $\left]- 2, 0 \right[ \cup \gtint{0}$.
-\end{proof} 
 
-% The orem~\ref{thm:Bernoulli} yield
- % $$
- % B=  \left( \{ 1 \} \cup 2 \bN \right) \times \bR \cup \bigcup_{n \in 2 \bN + 3}  \{ n \} \times \geint{t_n} \, .
- % $$
+\section{ } 
+
+ Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  \begin{equation} \label{eq:f3-t3}
 f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 \end{equation}
-Note that
-$$\bN + 2 = \bN \setminus \{ 0, 1 \} = (2 \bN + 2) \cup (2 \bN + 3) \, .$$
-The following two theorems are immediate corollaries of Theorem~\ref{thm:variation}:
- Theorem~\ref{thm:Bernoulli} shows  
+
+
 
  
 
 
- \begin{proof}
-   First,
-   if $x = - 2$ then 
-   we have $f_n(x) = {(- 1)}^n - 1 + 2n \ge 2 n - 2 > 0$.
-   Second,
-   if $x > - 2$ then Theorem~\ref{thm:increasing-fn} ensures $f_n(x) > f_1(x) =  0$.
-   Third and last, assume $n \in 2 \bN + 2$ and $x < - 2$.
-   Then, both ${(1 + x)}^n$ and $- 1 - n x$ are positive,
-   and thus their sum, which is equal to $f_n(x)$, is also positive.
- \end{proof}
- 
-
-
- \begin{proof}
-   The desired result is an immediate corollary of Theorem~\ref{thm:Bernoulli}.
- \end{proof}
-
- Theorems \ref{thm:Bernoulli} and \ref{thm:Bernoulli-non-strict} can also be obtained as corollaries of:
- 
-  \begin{theorem} \label{thm:variation}
-    For each $n \in 2 \bN + 2$,
-    $f_n$ is
-    decreasing on $\leint{0}$ and
-    increasing on $\geint{0}$.
-   For each $n \in 2 \bN + 3$, $f_n$ is
-   increasing on $\leint{- 2}$,
-   decreasing on $\left]- 2, 0 \right[$, and
-   increasing on $\geint{0}$.
-\end{theorem}
-
-\begin{theorem}
-  Let $x$, $y \in \bR$ be such that $x \ne y$.
-   For each $n \in 2 \bN + 2$, 
-   $$
-  \frac{x^n - y^n}{x - y} = \sum_{k = 0}^{n - 1} \ttx^{n - 1 - k}\tty^k 
-   $$
-   
-   $$
-   f_n(x - 1) - f_n(y - 1) = {1 + x}^n - 
-    = 
-   {(1 + \ttx)}^n - {(1 + \tty)}^n - n (\ttx - \tty)
-   $$
-   $$
-   \sum_{k = 0}^{n - 1} \left(  {(1 + \ttx)}^{n - 1 - k}{(1 + \tty)}^k - 1  \right)
-   $$
- \end{theorem}
-
- 
-
- 
- \section{Calculus stuff}
-
-%  For each $n \in \bN + 2$,
-%  straightforward computations yield
-% \begin{equation} \label{eq:deriv-fn} 
-%   f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) \, , 
-%   \end{equation}
-%  so the sign of $f_n'$ is easy to determine:
-
-Theorem~\ref{thm:Bernoulli} is an immediate corollary of Theorem~\ref{thm:variation}.
- $$
-  f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \,.
-  $$
-
-
- \begin{theorem} \label{thm:variation-even}
-   For each $n \in 2 \bN + 2$,
-   $f_n$ is
-   decreasing on $\leint{0}$ and
-   increasing on $\geint{0}$.
- \end{theorem}
-
- \begin{proof}
-   Since $n - 1$ is an odd positive integer,
-   Equation~\eqref{eq:deriv-fn} shows that
-   $f'_n$ is increasing on $\bR$,
-   and subsequently, that
-   $0$ is the only real root of $f_n'$.
-   Therefore,
-   $f'_n$ is negative on $\ltint{0}$
-   and 
-   positive on $\gtint{0}$.
-   The desired result follows.
- \end{proof}
-
-
-
- \begin{proof}
-   Since $n - 1$ is an even positive integer,
-   the function from $\bR$ to itself associated with the monomial $\ttx^{n - 1}$ is
-   decreasing on $\leint{0}$ and
-   increasing on $\geint{0}$.
-   Hence, 
-   Equation~\eqref{eq:deriv-fn} shows: 
-   $f_n'$ is decreasing on $\leint{- 1}$,
-   $f_n'$ vanishes at $- 2$,
-   $f_n'$ is increasing on $\geint{- 1}$, and
-   $f_n'$ vanishes at~$0$.
-   Therefore, $f_n'$ is positive on $\ltint{- 2}$,
-   negative on $\left]- 2, 0 \right[$, and
-   positive on $\gtint{0}$.
-   The desired result follows.
- \end{proof}
- 
- 
 
  \section{Previous results} 
  
- \begin{theorem} \label{thm:tipping-point}
-   For each odd  $n \in 2 \bN + 3$,
-   there exists $t_n \in \ltint{- 2}$ such that
- \begin{equation} \label{eq:def-tn}
- \left\{ x \in \bR : f_n(x) \ge 0 \right\}
- =
- \geint{t_n} \,. 
- \end{equation} 
- \end{theorem} 
-
- \begin{proof}
-   By Theorem~\ref{thm:variation-odd},  $f_n$ is decreasing on $[- 2, 0]$,
-   whence   $f_n(- 2) > f_n(0) = 0$.
-   Moreover, $f_n(x)$ is asymptotically equivalent to $x^n$ as $x$ approaches $\pm \infty$,
-   and thus $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
-   Therefore, the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
-   It follows from Theorem~\ref{thm:variation-odd} that Equation~\eqref{eq:def-tn} holds true.
- \end{proof}
-
- For each $n \in 2 \bN + 3$,
- let $t_n$ be as in Theorem~\ref{thm:tipping-point}:
- $t_n$ is a \emph{tipping point} for Bernoulli's inequality.
- Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  Straightforward computations yield the following recurrence relation which is used as a lemma:
  \begin{equation} \label{eq:fn+2-fn}
    f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 \left(\ttx + 2 + \frac{1}{n} \right)
@@ -293,6 +135,8 @@ Theorem~\ref{thm:Bernoulli} is an immediate corollary of Theorem~\ref{thm:variat
    Put $u_n = - 2 - n^{-1}$ for every $n \in \bN + 1$.
    Our task it to prove $t_n \le u_{n - 2}$ for every $n \in 2 \bN + 3$.
    We proceed by induction on~$n$.
+   Since
+   
    The assertion holds true for $n = 3$ because $t_3 = u_1 = - 3$.
    Let us now deal with the inductive step.
    Let $n \in 2 \bN + 3$ be such that $t_n \le u_{n - 2}$.
@@ -425,7 +269,67 @@ Note that Theorem~\ref{thm:lower-sqrt} ensures that $t_n$ approaches $- 2$ as $n
 
 
  \bibliographystyle{plain}
-  \bibliography{bernoulli}
+ \bibliography{bernoulli}
+
+ \section{Bonus section}
+ 
+\begin{theorem} \label{thm:root-mult}
+  For each $n \in \bN + 2$,
+  $0$ is a double root of $f_n$ and $0$ the only non-simple (complex) root of $f_n$.
+\end{theorem}
+
+\begin{proof}
+  Straightforward computations yield the second derivative of $f_n$:
+\begin{equation} \label{eq:deriv-second-fn}
+f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
+\end{equation}
+  Now, by letting $\ttx = 0$ in Equations \eqref{eq:def-fn}, \eqref{eq:deriv-fn}, and \eqref{eq:deriv-second-fn},
+  we obtain 
+  $$
+  f_n(0) = f_n'(0) = 0 \ne n (n - 1) = f_n''(0) \, ,
+  $$
+  whence $0$ is a double root of $f_n$.
+  In addition, $f_n$ and its derivative satisfy 
+   $$
+   (1 + \ttx) f_n'(\ttx) - n f_n(\ttx) = n (n - 1) \ttx \, ,
+   $$
+   so for every complex number $z$, $f_n(z) = f_n'(z) = 0$ implies $z = 0$.
+   It follows that $0$ is the only non-simple root of $f_n$.
+ \end{proof}
+ 
+ Theorem~\ref{thm:root-mult} ensures that
+for every $n \in \bN + 2$ and every $x \in \bR$, 
+the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
+(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
+
+\begin{theorem} \label{thm:increasing-fn}
+  For each $x \in \left]- 2, 0 \right[ \cup \gtint{0}$,
+  the sequence $\left( f_n(x) \right)_{n \in \bN + 1}$ is increasing.
+  For each $x \in \bR \setminus \{ 0 \}$,
+  the sequence $\left( f_n(x)\right)_{n \in 2 \bN}$ is increasing.
+\end{theorem} 
+
+\begin{proof}
+ Let $n \in \bN + 1$.
+ Straightforward computations yield  
+ $$
+ f_{n+ 1} (\ttx) - f_n(\ttx) = \frac{1}{n + 1} \ttx  f_{n + 1}'(\ttx) 
+ $$
+ and
+ Theorem~\ref{thm:variation} ensures that $\ttx f_{n + 1}'(\ttx)$ is positive on $\left]- 2, 0 \right[ \cup \gtint{0}$.
+ Therefore, the first part of the desired result holds true.
+ Now, let $n \in 2 \bN$ and let $x \in \leint{-2}$.
+ Straightforward computations yield  
+ $$
+ f_{n + 2}(\ttx) - f_n(\ttx) =  \left(  (2 + \ttx) {(1 + \ttx)}^n - 2 \right) \ttx
+ $$
+ and, besides, we have
+ $$
+  (2 + x) {(1 + x)}^n \le 0 \,, 
+ $$
+ whence $f_{n + 2}(x) - f_n(x) \ge - 2 x   \ge 4$.
+ Therefore, the second part of the desired result holds true.
+\end{proof} 
 
 \end{document}
 
