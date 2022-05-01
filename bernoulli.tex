@@ -32,30 +32,28 @@
 
 Let $\bR$ denote the field of real numbers,
 let $\bN$ denote the set of all \emph{non-negative} integers, and 
-let $\ttx$ denote an indeterminate over~$\bR$.
+let $\ttx$ be an indeterminate over~$\bR$.
 
 \section{Introduction}
 
-For each $n \in \bN$, let $f_n$ be the polynomial with integer coefficients defined by:
+The paper focuses on the sequence  of polynomials $\left( f_n \right)_{n \in \bN}$ given by:
 \begin{equation} \label{eq:def-fn}
-f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx  \,.
+f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx  
 \end{equation}
-For instance, we have
+for each $n \in \bN$.
+The first five terms are:
 $f_0(\ttx) = f_1(\ttx) = 0$,
 $f_2(\ttx) = \ttx^2$,
-$f_3(\ttx) = \ttx^3 + 3 \ttx^2$, and $f_4(\ttx) = \ttx^4 + 4 \ttx^3  + 6 \ttx^2$.
-The fundamental property of our polynomials is
-that the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
+$f_3(\ttx) = \ttx^3 + 3 \ttx^2$, and
+$f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx^2$.
+The fundamental property of the $f_n$'s is that
+the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
 $$
 f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
 $$ 
 The latter inequality is called \emph{Bernoulli's inequality}.
-Hence, studying Bernoulli's inequality is studying the signs and the roots of the $f_n$'s.
-
-For each $n \in \bN$, the derivative of $f_n$ is  given by
-\begin{equation} \label{eq:deriv-fn} 
-  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) \, .
-\end{equation}
+Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
+It turns out that the behavior of $f_n$ depends on the parity of $n$:
 
 
 \begin{theorem} \label{thm:variation}
@@ -70,43 +68,69 @@ For each $n \in \bN$, the derivative of $f_n$ is  given by
  \end{theorem}
 
  \begin{proof}
-   The desired result follows from a simple examination of Equation~\eqref{eq:deriv-fn}.
+   The basic rules of differentiation yield 
+\begin{equation} \label{eq:deriv-fn} 
+  f_n'(\ttx)  = n \left( {(1 + \ttx)}^{n - 1} -  1 \right) 
+\end{equation}
+for each $n \in \bN$,
+and thus, the desired result follows from a simple examination of the latter equation.
+%Equation~\eqref{eq:deriv-fn}.
 \end{proof} 
 
- \begin{theorem}%[Bernoulli's inequality]
-   \label{thm:Bernoulli}
+
+ \begin{theorem} \label{thm:Bernoulli}
    For each $n \in 2 \bN + 2$,
-   $f_n(x)$ is positive on $\bR \setminus \{ 0 \}$. 
+   $f_n$ is positive on $\bR \setminus \{ 0 \}$. 
    For each  $n \in 2 \bN + 3$,
    there exists $t_n \in  \ltint{-2}$
-   such that $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
+   such that $f_n$ is
+   negative on $\ltint{t_n}$ and
+   positive on $\left]t_n,  0\right[ \cup \gtint{0}$.
  \end{theorem}
  
  \begin{proof}
-   First,  assume $n \in  2 \bN + 2$.
+   First, the desired result holds true for $n \in \{ 0, 1 \}$ because $f_0(\ttx) = f_1(\ttx) = 0$.
+   Second, assume $n \in  2 \bN + 2$.
    It then follows from Theorem~\ref{thm:variation} that 
    $f_n$ is decreasing on $\leint{0}$ and increasing on $\geint{0}$.
-   Therefore, $f_n$ attains its minimum at $0$ and nowhere else.
+   Therefore, $f_n$ attains its minimum at $0$ and nowhere else. 
    Since $f_n(0) = 0$, $f_n$ is positive on $\bR \setminus \{ 0 \}$.
-   Now, assume $n \in 2 \bN + 3$.
+   Third and last, assume $n \in 2 \bN + 3$.
    It then follows from Theorem~\ref{thm:variation} that
    the restriction of $f_n$ to $\geint{-2}$ attains its minimum at $0$
    and nowhere else.
-   Therefore, $f_n$ is positive on $\left[- 2, 0 \right[ \cup \gtint{0}$.
+   Therefore, $f_n$ is positive on $\left[- 2, 0\right[ \cup \geint{0}$.  
    Moreover,
-   $f_n$ is a polynomial of odd degree $n$, so $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
+   $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$
+   because $f_n$ is a polynomial of odd degree~$n$.
    Hence,
    the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
    Since $f_n$ is increasing on $\leint{- 2}$ by Theorem~\ref{thm:variation},
    $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, - 2 \right]$.
-   It follows that $f_n$ is positive on  $\left]t_n, - 2 \right] \cup \left[- 2, 0 \right[ \cup \gtint{0} = \left]t_n, 0 \right[ \cup \gtint{0}$, as desired.
+   It follows that $f_n$ is positive on
+   $\left]t_n, - 2 \right] \cup \left[- 2, 0 \right[ \cup \gtint{0}
+   =
+   \left]t_n, 0 \right[ \cup \gtint{0}$,
+   as desired.
  \end{proof}
+ 
+ The $t_n$'s are, by definition, the \emph{tipping points} for Bernoulli's inequality.
+ Its first term is easy to compute:
+ since $f_3$ factors into $f_3(\ttx) = \ttx^2( \ttx + 3)$,
+ we have $t_3 = - 3$.
+ The aim of this paper is to study the sequence $\left( t_n \right)_{n \in 2 \bN + 3}$.
+ Previously known results are examined in Section~\ref{sec:bulgar}:
+ % we show that our sequence is increasing
+ % and
+ % $t_n$ is less than $- 2 - n^{-1}$ for every $n \in 2 \bN + 3$.
+ Some improvements are presented in Section~\ref{sec:contrib}.
+ % we show $t_n \le - 2 - \ln(2 n) n^{-1}$ is asymptotically equivalent to $(\ln n) / n$ as $n$ approaches~$\infty$.
 
- For each $n \in 2 \bN + 3$, 
- $t_n$ is a \emph{tipping point} for Bernoulli's inequality.
+ 
+ 
+ \section{Previous results} \label{sec:bulgar} 
 
-
-\section{ } 
+ 
 
  Equation~\eqref{eq:f3-t3} shows that $t_3 = - 3$. 
  \begin{equation} \label{eq:f3-t3}
@@ -120,6 +144,9 @@ f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
 
 
  \section{Previous results} 
+
+ In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
+ both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} below are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
  
  Straightforward computations yield the following recurrence relation which is used as a lemma:
  \begin{equation} \label{eq:fn+2-fn}
@@ -135,7 +162,8 @@ f_3(\ttx) = \ttx^3 + 3 \ttx^2 = \ttx^2 (\ttx + 3) \,.
    Put $u_n = - 2 - n^{-1}$ for every $n \in \bN + 1$.
    Our task it to prove $t_n \le u_{n - 2}$ for every $n \in 2 \bN + 3$.
    We proceed by induction on~$n$.
-   Since
+   Since $f_3(- 3) = 0$,
+   we have $t_3 = - 3 = u_3$, 
    
    The assertion holds true for $n = 3$ because $t_3 = u_1 = - 3$.
    Let us now deal with the inductive step.
@@ -165,8 +193,6 @@ It follows $f_{n + 2} (t_n) < 0$ or, equivalently, $t_n < t_{n + 2}$.
 
 For each $n \in 2 \bN + 5$, $t_n$ lies in $\left]- 3, - 2 \right[$ and the coefficients of $f_n$ are all integers,
 so the integral root theorem ensures that $t_n$ is irrational.
- In the literature \cite{MitrinovicCNIA, MitrinovicAI, MitrinovicP93, MondP94},
- both Theorems \ref{thm:HP-upper} and \ref{thm:HP-tn-increase} are attributed to N.~Had\v{z}iivanov and I.~Prodanov.
 
 \section{Our contribution}
 
@@ -297,10 +323,10 @@ f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
    It follows that $0$ is the only non-simple root of $f_n$.
  \end{proof}
  
- Theorem~\ref{thm:root-mult} ensures that
-for every $n \in \bN + 2$ and every $x \in \bR$, 
-the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
-(the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
+%  Theorem~\ref{thm:root-mult} ensures that
+% for every $n \in \bN + 2$ and every $x \in \bR$, 
+% the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if, $x$ is a non-zero root of $f_n$
+% (the graph of $f_n$ \emph{touches} the $\ttx$-axis at $\ttx = 0$ but does not cross).
 
 \begin{theorem} \label{thm:increasing-fn}
   For each $x \in \left]- 2, 0 \right[ \cup \gtint{0}$,
@@ -333,64 +359,32 @@ the graph of $f_n$ \emph{crosses} the $\ttx$-axis at $\ttx = x$ if, and only if,
 
 \end{document}
 
-\begin{theorem}
-  For each $n \in 2 \bN + 5$, $t_n$ is less than $- 2 - {(n - 2)}^{-1}$.
-\end{theorem}
-
-\begin{proof}
-  Let $n \in 2 \bN + 5$.
-  By letting $\ttx = - 2 - n^{-1}$ in Equation~\eqref{eq:fn+2-fn} we obtain
-\end{proof}
+ \begin{theorem}%[Bernoulli's inequality]
+   \label{thm:Bernoulli}
+   For each $n \in 2 \bN + 2$,
+   $f_n(x)$ is positive on $\bR \setminus \{ 0 \}$. 
+   For each  $n \in 2 \bN + 3$,
+   there exists $t_n \in  \ltint{-2}$
+   such that $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, 0 \right[ \cup \gtint{0}$.
+ \end{theorem}
+ 
  \begin{proof}
-   Let $n \in \bN + 1$.
-   % Our task is to prove $f_{n + 2}(- 2 - n^{-1}) \ge 0$.
-   Let us first check $f_n(- 2 - n^{- 1}) \ge 0$.
-   Theorem~\ref{thm:Bernoulli} ensures $f_n(- {(n + 1)}^{-1}) \ge 0$, whence
-   $$
-   \left( 1 - \frac{1}{n + 1} \right)^n \ge 1 - \frac{n}{n + 1} = \frac{1}{n + 1} \,.
-   $$
-   Since 
-   $$
-   1 + \frac{1}{n} = \left( 1 - \frac{1}{n + 1} \right)^{-1} \,,
-   $$
-   it follows 
-   $$
-  \left( 1 + \frac{1}{n} \right)^n = \left( 1 - \frac{1}{n + 1} \right)^{-n}  \ge - (n + 1)  
-  $$
-  (a proof that ${(1 + n^{-1} )}^n$ is less than $e$ requires a little more work \cite{Wiener85}).
-  and subsequently,
-  $$
-  f_n \left(- 2 - \frac{1}{n} \right) = {(- 1)}^n \left( 1 + \frac{1}{n} \right)^n + 2 n \ge - (n + 1) + 2 n = n - 1 \ge 0 \,.
-  $$
-  Besides, straightforward computations yield 
-   \begin{equation} \label{eq:fn+2-fn}
-   f_{n + 2} (\ttx) = {(1 + \ttx)}^2 f_n(\ttx) + n \ttx^2 \left(\ttx - 2 - \frac{1}{n} \right) \, ,
- \end{equation}
- whence
- $$
- f_{n + 2}\left(- 2 - \frac{1}{n} \right) = \left( 1 + \frac{1}{n} \right)^2 f_n\left( - 2 - \frac{1}{n} \right) \ge 0 \, . 
- $$
- \end{proof} 
-   Then, the previous discussion ensures that $f_{n / 2}$ is non-negative on $\geint{-1}$.
-   In particular, $f_{n / 2}(y) $ is non-negative for $y = {(1 + x)}^2 - 1$
-   (note that $y = 0$ is equivalent to $x = - 2$).
-   Besides, straightforward computations yield
-   $$
-   f_{2 m}(\ttx) = f_m({(1 + \ttx)}^2 - 1) + m \ttx^2 
-   $$
-   for every $m \in \bN$.
-   It follows
-   $$
-   f_n(x) = f_{n / 2}( y ) + \frac{n}{2} y^2 \ge \frac{n}{2} x^2 > 0
-   $$
-and 
-$$
-f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx = \ttx^2 \left( {(\ttx + 2)}^2 + 4 \right)  \, .
-$$
- The following identities are not mentioned anywhere else in the paper but may be of interest to the reader:
- $$
- f_n (\ttx)
- = \ttx^2 \sum_{k = 2}^n \binom{n}{k} \ttx^{k - 2}
- = \ttx^2 \sum_{k = 1}^{n - 1} \sum_{j = 0}^{k - 1} {(1 + \ttx)}^j \, .  
- $$
-for every $x \in \bR$, $f_n(x) \ge 0$ is equivalent to ${(1 + x)}^n \ge 1 + n x$. 
+   First, assume $n \in  2 \bN + 2$.
+   It then follows from Theorem~\ref{thm:variation} that 
+   $f_n$ is decreasing on $\leint{0}$ and increasing on $\geint{0}$.
+   Therefore, $f_n$ attains its minimum at~$0$ and nowhere else.
+   Since $f_n(0) = 0$, $f_n$ is positive on $\bR \setminus \{ 0 \}$.
+   Now, assume $n \in 2 \bN + 3$.
+   It then follows from Theorem~\ref{thm:variation} that
+   the restriction of $f_n$ to $\geint{-2}$ attains its minimum at $0$
+   and nowhere else.
+   Therefore, $f_n$ is positive on $\left[- 2, 0 \right[ \cup \gtint{0}$.
+   Moreover,
+   $f_n$ is a polynomial of odd degree $n$, so $f_n(x)$ approaches $- \infty$ as $x$ approaches $- \infty$.
+   Hence,
+   the intermediate value theorem ensures that there exists $t_n \in \ltint{- 2}$ such that $f_n(t_n) = 0$.
+   Since $f_n$ is increasing on $\leint{- 2}$ by Theorem~\ref{thm:variation},
+   $f_n$ is negative on $\ltint{t_n}$ and positive on $\left]t_n, - 2 \right]$.
+   It follows that $f_n$ is positive on
+   $\left]t_n, - 2 \right] \cup \left[- 2, 0 \right[ \cup \gtint{0} = \left]t_n, 0 \right[ \cup \gtint{0}$, as desired.
+ \end{proof}
