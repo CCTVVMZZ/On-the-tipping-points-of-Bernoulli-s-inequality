@@ -10,12 +10,14 @@
 \newcommand{\bR}{\mathbb{R}} 
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
 \newcommand{\gtint}[1]{\left] #1, \infty \right[}
 \newcommand{\geint}[1]{\left[ #1, \infty \right[}
 \newcommand{\ltint}[1]{\left]- \infty, #1 \right[}
 \newcommand{\leint}[1]{\left]- \infty, #1 \right]}
 
 \newcommand{\ttx}{\mathtt{x}}
+\newcommand{\ttz}{\mathtt{z}}
 \newcommand{\tty}{\mathtt{y}}
 
 \newtheorem{theorem}{Theorem}
@@ -30,6 +32,540 @@
 
 \sloppy
 
+Let $V$ be a normed vector space.
+For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
+
+\begin{lemma} \label{lem:mvi}
+  Let $I$ be an interval of $\bR$,
+  %let $V$ be a normed vector space,
+  let $f\colon I \to V$, and let $g\colon I \to \bR$ be such that
+  $f$ and $g$ are both differentiable and $\norm{f'(x)} < g'(x)$ for every $x \in I$.
+  For every $a$, $b \in I$, $a \le b$ implies
+  \begin{equation} \label{eq:mvi-f-g}
+    \norm{f(b) - f(a)} \le g(b) - g(a) \, .
+  \end{equation} 
+\end{lemma}
+
+\begin{proof}
+  Let $a$, $b \in I$ be such that $a < b$.
+  Put
+  $$
+  X = \left\{ x \in [a, b] : \norm{f(x) - f(a)}  \le g(x) - g(a) \right\} \, .
+  $$
+  Our task is to prove $b \in X$.
+  Put $c = \sup X$.  %(\emph{a priori} $c = \pm \infty$ is possible).
+  We first check $c \in X$ and then $b = c$.
+  Since $a \in X$ and since $b$ is an upper bound for $X$,
+  $c$ is
+  an element of $[a, b]$
+  and
+  an adherent point for $X$ in $\bR$ \cite{Rudin}.
+  Besides, $X$ is closed in $[a, b]$ because $f$ and $g$ are continuous on that interval.
+  It follows $c \in X$.
+  %Since $[a, b]$ is closed in $\bR$, $X$ is also closed in $\bR$, and thus $c$ is an element of~$X$.
+  Now, let $x \in X$ with $x < b$.
+  The final step is to rule out $c = x$.
+  Since $\norm{f'(x)} < g'(x)$,
+  there exists $y \in \left]x, b\right]$ such that
+  $$
+  \norm{\frac{f(y)  - f(x)}{y - x}} < \frac{g(y) - g(x)}{y - x}  \, .
+  $$
+  It follows 
+  \begin{align*}
+    \norm{f(y) - f(a)}
+    & \le \norm{f(y) - f(x)} + \norm{f(x) - f(a)} \\
+    & \le g(y) - g(x) + g(x) - g(a)   \\
+    & = g(y) - g(a)  \,, 
+  \end{align*}
+  whence $y \in X$.
+  Therefore, $x$ is not an upper bound for $X$, and thus $c$ is not equal to~$x$.
+\end{proof} 
+
+\begin{theorem} \label{thm:mvi}
+  Let $a$, $b \in \bR$ be such that $a < b$,
+  %let $V$ be a normed vector space,
+  let $f\colon [a, b] \to V$, and let $g\colon [a, b] \to \bR$ be such that
+  $f$ and $g$ are both continuous on $[a, b]$ and differentiable on $\left]a, b \right[$.
+  If $\norm{f'(x)} \le g'(x)$ for every $x \in \left]a, b \right[$
+  then Equation~\eqref{eq:mvi-f-g} holds true.
+\end{theorem}
+
+\begin{proof}
+  Put $I = \left]a, b \right[$.
+  Let  $u$, $v \in I$ be such that $u < v$ and let  $\varepsilon \in \gtint{0}$.
+  Let $g_\varepsilon \colon I \to \bR$ be defined by $g_\varepsilon(x) = g(x) + \varepsilon x$ for every $x \in I$.
+  By construction, we have
+  $$
+  \norm{f'(x)} \le g'(x) < g'(x) + \varepsilon =  g'_\varepsilon(x)
+  $$
+  for every $x \in I$.
+  Therefore, Lemma~\ref{lem:mvi} ensures 
+  \begin{equation} \label{eq:mvi-alpha-beta-eps} 
+  \norm{f(u) - f(v)} \le g_\varepsilon(x) - g_\varepsilon(y) \, .
+\end{equation}
+  Now, let $u$, $v$, and $\varepsilon$ approach $a$, $b$, and $0$, respectively.
+  Then, Equation~\eqref{eq:mvi-alpha-beta-eps} yields Equation~\eqref{eq:mvi-f-g},
+\end{proof}
+
+\begin{theorem}
+  Let $I$ be a real interval,
+  let $V$ be a normed vector space,
+  let $f\colon I \to V$, and let $g\colon I \to \bR$ be such that
+  $f$ and $g$ are differentiable and $\norm{f'(x)} \le g'(x)$ for every $x \in I$.
+  For every $a$, $b \in I$, $a < b$ implies
+  $$\norm{f(b) - f(a)} \le g(b) - g(a) \, . $$
+\end{theorem}
+
+\begin{proof}
+  Let $a$, $b \in I$ be such that $a < b$ and let $\varepsilon \in \gtint{0}$ be fixed.
+  Put
+  $$
+  X = \left\{ x \in [a, b] : \norm{f(x) - f(a)}  \le g(x) - g(a) + (x - a) \varepsilon \right\} \, .
+  $$
+  Our task is to prove $b \in X$.
+  Put $c = \sup X$.
+  Since $X$ contains $a$ as an element and since $b$ is an upper bound for $X$,
+  $c$ is a real number, and thus $c$ is a point of closure of~$X$.
+  Besides, $X$ is closed in $[a, b]$ because $f$ and $g$ are continuous.
+  It follows $c \in X$. 
+  By the way of contradiction, assume $c < b$.
+  Since $\norm{f'(c)} \le g'(c)$,
+  there exists $d \in \left]c, b\right]$ such that
+  $$
+  \norm{\frac{f(d)  - f(c)}{d - c}} \le \frac{g(d) - g(c)}{d - c} + \varepsilon \, .
+  $$
+  It follows 
+  \begin{align*}
+    \norm{f(d) - f(a)}
+    & \le \norm{f(d) - f(c)} + \norm{f(c) - f(a)} \\
+    & \le g(d) - g(c) + (d - c) \varepsilon + g(c) - g(a) + (c - a) \varepsilon  \\
+    & = g(d) - g(a) + (d - a) \varepsilon \,, 
+  \end{align*}
+  whence $d \in X$: contradiction.
+\end{proof} 
+
+$$
+g(x) = f(x) - \sum_{j = 0}^n \frac{x^j}{j!} f^{k}(0)
+$$
+
+$k = 0$, $1$.
+
+$$
+g_0' = g_1
+$$
+
+$$
+g_0(0) = 0
+$$
+
+$$
+xg_{n - 1}(x) = f^{(n - 1)}(x) - f^{(n - 1)}(0) - x f^{(n)}(0)
+$$
+
+Let $\ttz$ be a formal variable over the complex numbers.
+Put
+$$
+B_n(\ttz) = {(1 + \ttz)}^n - 1 - n \ttz 
+$$
+for every $n \in \bN$.
+
+Put
+\begin{equation} \label{eq:E-expansion}
+E(\ttz) = \sum_{n = 1}^\infty \frac{1}{n!} \ttz^{n - 1} \, .
+\end{equation}
+% or equivalently, 
+% $$
+% E(\ttz) = \frac{\exp(\ttz) - 1}{\ttz} \, . 
+% $$
+The formal power series $E$ converges everywhere on the complex plane and is completely determined by:
+%satisfies $E(0) = 1$ and 
+\begin{equation} \label{eq:def-func-E}
+\exp(\ttz) = 1 + \ttz E(\ttz) \, . 
+\end{equation} 
+Let $F\colon \bR \times \gtint{0} \to \bR$ be defined by:
+\begin{equation} \label{eq:def-F}
+F(x, y) =  E((x - 1)( \ln y)) (\ln y) y  - y
+\end{equation}
+for every $x \in \bR$ and every $y \in \gtint{0}$.
+Clearly, $F$ is smooth and completely determined by:
+\begin{equation} \label{eq:F-y-lny-y}
+F(1, y) = y \ln y - y
+\end{equation}
+and 
+\begin{equation} \label{eq:F-yx-xy}
+  (x - 1)F(x, y)  = y^x - x y
+\end{equation}
+for every $x \in \bR$ and every $y \in \gtint{0}$.
+%(Equation~\eqref{eq:F-yx-xy} follows from Equation~\eqref{eq:def-func-E}).
+For each odd $n \in \bN$ and every $t \in \bR$, $F$ and $B_n$ are related by
+\begin{equation} \label{eq:B-F}
+B_n(- 1 - t) = (n - 1) (1 - F(n, t)) \, .
+\end{equation} 
+
+\begin{lemma} \label{lem:Eprime}
+  The derivative of $E$ is positive on~$\bR$.
+\end{lemma}
+
+\begin{proof}
+  Equation~\eqref{eq:E-expansion} yields $E'(0) = \frac{1}{2}$.
+  Now, let  $x \in \bR \setminus \{ 0 \}$ be fixed.
+  Our task is to prove $E'(x) > 0$.
+  Put $D(\ttz) = \ttz^2 E'(\ttz)$. 
+  By differentiating  Equation~\eqref{eq:def-func-E} twice, we obtain 
+  $$
+  \exp(\ttz) = E(\ttz) + \ttz E'(\ttz) \,, 
+  $$
+  and subsequently 
+  $$
+  \exp(\ttz) = 2 E'(\ttz) + \ttz E''(\ttz)  \,.
+  $$
+  It follows
+  $$
+  \ttz \exp(\ttz) = 2 \ttz E'(\ttz ) + \ttz^2 E''(\ttz) = D'(\ttz) \,,
+  $$
+  whence $D'$ is negative on $\ltint{0}$ and positive on $\gtint{0}$.
+ % and thus the sign of $D'(x)$ is equal to that of~$x$.
+  Therefore, we have $D(x) > D(0)$.  
+  Since $D(0) = 0$ and since $D(x) > 0$ is equivalent to $E'(x) > 0$,
+  $E'(x)$ is positive.
+\end{proof}
+
+\begin{lemma}
+  The partial derivative of $F$ with respect to its first variable is positive.
+\end{lemma}
+
+\begin{proof}
+  By differentiating Equation~\eqref{eq:def-F} with respect to $x$, we obtain
+  $$
+  \partial_1 F(x, y) = E'((x - 1) \ln y) \ln^2 y 
+  $$
+  for every $x \in \bR$ and every $y \in \gtint{0}$.
+  Therefore, the desired result follows from Lemma~\ref{lem:Eprime}
+\end{proof} 
+
+\begin{theorem}
+  There exists a unique smooth $\sigma \colon \gtint{1} \to \gtint{0}$ such that
+  for every $x \in \bR$ and every $y \in \gtint{1}$, the sign of $F(x, y)$ is equal to that of $x - \sigma(y)$.
+\end{theorem}
+
+\begin{lemma}
+  The partial derivative of $F$ with respect to its second variable is
+  negative on $\bR \times \ltint{1}$
+  and
+  positive on $\bR \times \gtint{1}$.
+\end{lemma} 
+
+\begin{proof}
+\end{proof} 
+
+
+
+If $n$ is odd and if $t \in \gtint{0}$
+$$
+f_n(- 1 - t)
+%= - t^n - 1 + n + n t
+= - F(n, t) 
+$$
+Let $F\colon \bR \times \gtint{0}\to \bR$ be defined by:
+$$
+F(x, y) = y^x - x y - x + 1
+$$
+for every $x \in \bR$ and every $y \in \gtint{0}$.
+For each $i \in \{ 1, 2 \}$, let $\partial_i F$ denote the $i$th partial derivative of~$F$:
+$$
+\partial_1 F(x, y) = y^x \ln y - y - 1 
+$$
+and
+\begin{equation} \label{eq:dF-dy}
+\partial_2 F(x, y) =  (y^{x - 1}  -  1) x
+\end{equation} 
+for every $x \in \bR$ and every $y \in \gtint{0}$.
+
+\begin{theorem}
+  There exists a (unique) smooth function $\tau\colon \gtint{0} \to \gtint{1}$ such that
+  for every $x$, $y \in \gtint{0}$,
+  the sign of $F(x, y)$ is equal to that of $(x - 1)(y - \tau(x))$.
+\end{theorem}
+
+\begin{proof}
+  % For every $x \in \bR$ and every $y \in \gtint{0}$,
+  % the sign of $\partial_2 F(x, y)$ is equal 
+  Let $x \in \gtint{1}$ be fixed.
+   Equation~\eqref{eq:dF-dy} shows that
+  the sign of $\partial_2F(x, y)$ is equal to that of $y - 1$ for every $y \in \gtint{0}$.
+  Therefore, $F(x, \cdot)$ is decreasing on $\left[0, 1 \right]$ and increasing on $\geint{1}$.
+  Besides, we have $$
+  F(x, 0) = 1 - x < 0 < \infty = \lim_{y \to \infty} F(x, y) \, .
+  $$
+  
+\end{proof}
+Straightforward computations yield:
+$$
+F(x, y) = - x F(x^{-1}, y^x) 
+$$
+for every $x \in \bR \setminus \{ 0 \}$ and every $y \in \gtint{0}$.
+It follows 
+\begin{equation} \label{eq:tau-x-tau-x}
+\tau(x^{- 1}) = \left( \tau(x) \right)^x 
+\end{equation}
+for every $x \in \gtint{0}$.
+
+\begin{theorem}
+  The derivative of $\tau$ is positive.
+\end{theorem}
+
+\begin{proof}
+  Let us first prove $\tau'(1) > 0$.
+  Differentiating Equation~\eqref{eq:tau-x-tau-x} with respect to $x$ yields
+  $$
+  -x^{-2} \tau'(x^{-1}) = x \left(\tau(x) \right)^{x - 1} \tau'(x) + \left( \tau(x) \right)^x  \ln \tau(x) 
+  $$
+  for every $x \in \gtint{0}$, so in the particular case where $x = 1$, we get  
+  $$
+  - \tau'(1) =  \tau'(1) + \tau(1) \ln \tau(1) \,, 
+  $$
+  or equivalently,
+  $$
+  2 \tau'(1) = - \tau(1) \ln  \tau(1)  \,.
+  $$
+  Besides, the latter quantity is obviously negative.
+  
+  %The derivatives of $\tau(x^{-1})$ and $\left( \tau(x) \right)^x$ with respect to $x$ are equal to
+  % $- x^{-2} \tau'(x^{-1})$ and
+  % $$
+  % -x^{-2} \tau'(\left( \tau(x) \ln \tau(x) + x \tau'(x) \right) 
+  % \left(\tau(x) \right)^{x - 1} \,, 
+  % $$
+  % respectively.
+  
+  %   It follows $\tau'(1) = 
+\end{proof} 
+
+Straightforward computations yield 
+$$
+F(x, y) = (x - 1) \left( E((x - 1) \ln y) y \ln y - y - 1  \right)
+$$
+for every $(x, y) \in \Omega$.
+% $F(x, y) = 0$ is equivalent to
+% $$
+% y = \exp \left( \frac{ \ln(2 x) }{x} + \frac{1}{x} \ln \left( \frac{1 + y}{2}  - \frac{1}{2x}  \right) \right) 
+% $$
+
+\begin{theorem}
+  Inequality $x \tau(x) > 2$ holds true for every $x \in \left]0, 2e^{-1} \right]$
+  and $x \tau(x)$ approaches $2$ as $x$ approaches~$0$.
+\end{theorem} 
+
+\begin{proof}
+  Let $x \in \left]0, 2 e^{-1} \right[$.
+  We have 
+  %$2 x^{-1} \ge e$, or equivalently,
+  $\ln(2 x^{-1}) \ge 1$.
+  It follows
+  $$
+  F(x, 2x^{-1})
+  = \exp (x \ln(2 x^{-1})) - x - 1 
+  \ge 1 + x \ln(2 x^{-1}) - x - 1
+  = \left(\ln(2 e^{-1}) - \ln  x \right) x > 0\,, 
+  $$
+  whence $\tau(x) > 2 x^{-1}$.
+
+  $$
+  F(x, (2 + \epsilon) x^{-1}) = \exp(x \ln(2 + \epsilon) - x \ln x) - x - 1 - \epsilon
+  $$
+\end{proof}
+$$
+2^xx^{-x} \ge  x + 1
+$$
+
+$$
+x^{-1}  \ln(1 + x) \le 1 \le \ln (2x^{-1}) 
+$$
+
+$$
+0 \le \ln(2 x^{-1} ) - x^{-1} \ln( 1 + x) = x^{-1} \ln \left( 2^x x^{-x} {(1 + x)}^{-1} \right)
+$$
+
+$$
+1 \le 2^x x^{- x} {(1 + x)}^{-1} 
+$$
+\begin{lemma}
+  For each 
+\end{lemma}
+\begin{lemma}
+  There exists a unique $t \in \gtint{1}$ such that $t \ln t = t + 1$.
+\end{lemma}
+
+\begin{proof}
+  Let $f\colon \geint{1} \to \bR$ be defined by:
+  $f(x) = x \ln x - x - 1$ for every $x \in \geint{1}$.
+  Since $f(1) = - 1 < 0 < e^2 - 1 = f(e^2)$, 
+  the intermediate value theorem ensures that there exists $t \in \left]1, e^2 \right[$ such that
+  $f(t) = 0$.
+  Since $f'$ is the restriction of $\ln$ to $\geint{1}$,
+  $f$ is increasing, and thus $t$ is the unique zero of~$f$.
+%  By construction, $t$ satisfies the desired properties.
+\end{proof}
+
+\begin{theorem}
+  For each $x \in \gtint{0}$,
+  there exists $t \in \gtint{1}$ such that for every $y \in \gtint{0}$,
+  the sign of $F(x, y)$ is equal to that of $(x - 1) (y - t)$.
+\end{theorem}
+
+\begin{proof}
+  The case where $x = 1$ is trivial.
+  Let us now assume $x > 1$.
+ 
+  Then, we have $F(x, y) = 0 = (x - 1) (y - t)$   every $y \in \gtint{0}$,
+  and thus 
+  the case where 
+  Let us fist consider the case where $x = 1$.
+  
+\end{proof} 
+
+\begin{proof}
+  Let $x \in \left]0, 1\right[ \cup \gtint{1}$ be fixed.
+  First, assume $x \in \gtint{1}$.
+  Let $f \colon \geint{1} \to \bR$ be defined by:
+  $f(y) = F(x, y)$ for every $y \in \geint{1}$.
+  Both
+  $y^{x - 1}$ and
+  $$
+  y^{-1} f(y) = y^{x - 1} - x - x y^{-1} + y^{-1} = \exp \left( (x - 1) \ln y \right) - x - x y^{-1} + y^{- 1}
+  $$
+  $$
+  F(x, \exp x) = \exp( x^2) - x \exp x - x + 1  
+  $$
+  approach $\infty$
+  as $y$ approaches $\infty$,
+  whence $\lim_{y \to \infty} f(y) = \infty$.
+  Besides, $f(1) = 2 - 2x$ is negative,
+  so the intermediate value theorem ensures that there exists $t \in \gtint{1}$ such that $f(t) = 0$.
+  Since 
+  $f'(y) = x (y^{x - 1} - 1)$ for every $y \in \geint{1}$,
+  $f'$ is positive on $\gtint{1}$,
+  and thus $f$ is increasing.
+  Therefore, $t$ is the unique zero of~$f$.
+\end{proof}
+
+\begin{theorem}
+  There exists a unique function $\tau \colon \gtint{0} \to \gtint{1}$ such that
+  $F(x, \tau(x)) = 0$ for every $x \in \gtint{0}$ and $\tau(1) \ln \tau(1) = \tau(1) + 1$.
+\end{theorem}
+
+\begin{proof}
+  Let us first deal with the case where $x = 1$.
+  %Hence, $f$ has exactly one zero  and that zero is greater than~$1$. 
+  Since $F(1, y) = 0$ for every $y \in \gtint{0}$,
+  the zero of $f$ is the unique suitable choice for $\tau(1)$.
+
+  Second, let $x \in \gtint{1}$ be fixed.
+  Hence, $g$ has exactly one zero and that zero is the unique suitable choice for $\tau(x)$.
+
+   $\tau(x^{-1})$ to the power of $x^{-1}$ is the unique suitable choice for $\tau(x)$.
+\end{proof} 
+
+%Note that $F$ not less that $1$ on $\leint{0} \times \gtint{0}$ and that
+We claim that the zero set of $F$ is equal to
+$$
+\left\{ (x, \tau(x)) : x \in \gtint{0} \right\} \cup (\{ 1 \} \times \bR)  \,;
+$$
+the verification is left to the reader.
+
+\begin{theorem}
+  The function $\tau$ is smooth.
+\end{theorem}
+
+\begin{proof}
+  Let $G \colon \bR \times \gtint{0} \to \bR \times \bR$ be defined by:
+  $G(x, y) = (x, F(x, y))$ for every $x \in \bR$ and every $x \in \gtint{0}$. 
+\end{proof}
+
+\begin{theorem}
+  For each $x \in \left]0, 1 \right[ \cup \gtint{1}$,
+  there exist a unique $y \in \gtint{1}$ such that $F(x, y) = 0$.
+\end{theorem}
+
+\begin{theorem}
+  There exists a unique function $\tau\colon  \gtint{1} \to \gtint{1}$ such that
+  $F(x, \tau(x)) = 0$ for every $x \in \gtint{1}$.
+\end{theorem}
+
+\begin{proof}
+  Let $x \in \left] 0, 1 \right[ \cup \gtint{1}$.
+  $$
+   F(x, 1) = 2 - 2 x 
+  $$
+
+   
+\end{proof}
+
+\begin{proof}
+  Let $y \in \gtint{1}$ be fixed.
+  For each $x \in \bR$,
+  the basic rules of derivation  yield 
+$$
+\partial_1 F(x, y) = y^x \ln y - y - 1 \,, 
+$$
+whence $\partial_1 F(x, y) = 0$ is equivalent to 
+$$
+x  = \frac{\ln (y + 1) - \ln \ln y}{\ln y} \, . 
+$$
+In particular, equality $\partial_1 F(x, y) = 0$ holds true for exactly one $x \in \bR$,
+and thus Rolle's theorem ensures that there exist at most two distinct $x \in \bR$ for which $F(x, y) = 0$.
+Since $F(1, y) = 0$, there exists at most $x \in \gtint{1}$ such that $F(x, y) = 0$.
+
+
+
+
+\end{proof}
+
+
+
+Let
+$$
+G(x, y) = (x, F(x, y))
+$$
+
+$$
+J_G(x, y)
+=
+\begin{bmatrix}
+    1  &  0 \\ 
+    y^x \ln y - y - 1
+    &  x (y^{x - 1} - 1) 
+\end{bmatrix}
+$$
+$$
+F(2, 3)  = F(3, 2) =  0
+$$
+
+
+$$
+F(x, 1) = 2 - 2x < 0
+$$ 
+
+$$
+F(x, 2) = 2^x - 3 x + 1
+$$
+\begin{theorem}
+  There exists a unique function $\tau \colon \gtint{1} \to \gtint{0}$ such that
+  $$
+  \exp\left( x \tau(x) \right)  - x \exp  \tau(x) = x - 1
+  $$
+  for every $x \in \gtint{1}$.
+\end{theorem}
+
+\begin{proof}
+  Let $x \in \gtint{1}$ be fixed.
+  Let $f\colon $
+\end{proof}
+
+
+\end{document}
+
+
 Let $\bR$ denote the field of real numbers,
 let $\bN$ denote the set of all \emph{non-negative} integers, and 
 let $\ttx$ be an indeterminate over~$\bR$.
@@ -37,19 +573,16 @@ let $\ttx$ be an indeterminate over~$\bR$.
 \section{Introduction}
 
 The paper focuses on the sequence  of polynomials $\left( f_n \right)_{n \in \bN}$ given by:
-\begin{equation} \label{eq:def-fn}
-f_n(\ttx) = {(1 + \ttx)}^n - 1 - n \ttx  
-\end{equation}
-for each $n \in \bN$.
-The first five terms are:
-$f_0(\ttx) = f_1(\ttx) = 0$,
-$f_2(\ttx) = \ttx^2$,
-$f_3(\ttx) = \ttx^3 + 3 \ttx^2$, and
-$f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx^2$.
+$f_n(\ttx) = \ttx^n  - n \ttx$ for each $n \in \bN$.
+% The first five terms are:
+% $f_0(\ttx) = f_1(\ttx) = 0$,
+% $f_2(\ttx) = \ttx^2$,
+% $f_3(\ttx) = \ttx^3 + 3 \ttx^2$, and
+% $f_4(\ttx) = \ttx^4 + 4 \ttx^3 + 6 \ttx^2$.
 The fundamental property of the $f_n$'s is that
 the following equivalence holds true for every $n \in \bN$ and every $x \in \bR$:
 $$
-f_n(x) \ge 0 \iff {(1 + x)}^n \ge 1 + n x \,.
+f_n(x + 1) \ge n - 1 \iff {(1 + x)}^n \ge 1 + n x \,.
 $$ 
 The latter inequality is called \emph{Bernoulli's inequality}.
 Hence, studying Bernoulli's inequality is studying the signs of the $f_n$'s.
@@ -388,3 +921,89 @@ f_n''(\ttx)  = n (n - 1) {(1 + \ttx)}^{n - 2} \, .
    It follows that $f_n$ is positive on
    $\left]t_n, - 2 \right] \cup \left[- 2, 0 \right[ \cup \gtint{0} = \left]t_n, 0 \right[ \cup \gtint{0}$, as desired.
  \end{proof}
+
+%for every $x \in \bR$: $E(0) = 1$ and 
+\begin{equation} \label{eq:E-expansion}
+E(x) = \sum_{k = 1}^\infty \frac{1}{n!} x^{n - 1}
+\end{equation}
+for every $x \in \bR$.
+
+\begin{lemma}
+  The derivative of $E$ is positive.
+\end{lemma}
+
+\begin{proof}
+  Equation~\eqref{eq:E-expansion} yields $E'(0) = \frac{1}{2}$.
+  Now, let  $x \in \bR \setminus \{ 0 \}$ be fixed.
+  Our task is to prove $E'(x) > 0$.
+  Let $E_1$ denote the entire function defined by:  
+  $E_1(t) = t^2 E'(t)$ for every $t \in \bR$.
+  By differentiating  Equation~\eqref{eq:def-func-E} twice with respect to $x$, we obtain 
+  $$
+  \exp(x) = E(x) + x E'(x) \,, 
+  $$
+  and subsequently 
+  $$
+  \exp(x) = 2 E'(x) + x E''(x)  \,.
+  $$
+  It follows
+  $$
+  x \exp(x) = 2 x E'(x) + x^2 E''(x) = E_1'(x) \,,
+  $$
+  and thus  the sign of $E_1'(x)$ is equal to that of~$x$.
+  Therefore, we have $E_1(x) > E_1(0)$.  
+  Since $E_1(0) = 0$ and since $E_1(x) > 0$ is equivalent to $E'(x) > 0$,
+  $E(x)$ is positive.
+\end{proof}
+
+\begin{lemma}
+  Let $a$, $b \in [-\infty, \infty]$ be such that $a < b$ and
+  let $f\colon \left] a, b \right[ \to \bR$ such that
+  $f$ is differentiable and $f'$ has at most one root.
+  Both $\lim_{x \to a} f(x)$ and 
+  $\lim_{x \to b} f(x)$ exist in $[- \infty, \infty]$.
+  If 
+  $\lim_{x \to a} f(x)$ and
+  $\lim_{x \to b} f(x)$ have opposite signs then $f$ has exactly one root.
+\end{lemma}
+
+\begin{proof}
+  First, assume that $f'$ does not vanish on $\left] a, b \right[$.
+  
+  
+  Darboux's theorem ensures that 
+  First, assume that $f'$ is negative.
+  Then, $f$ is increasing, and thus
+  % $
+  % Second, assume that $f'$ is non-negative.
+  % Then, $f$ is increasing
+  % % $f'$ is positive on $[a, b] \setminus \{ c \}$,
+  % % $f'$ is negative on $[a, b] \setminus \{ c \}$,
+  % $f'$ is 
+  % $f'$ is negative on $\left]a, c \right[$ and positive on $\left]c, b \right[$,
+  % $f'$ is positive on $\left]a, c \right[$ and negative on $\left]c, b \right[$.
+  % The intermediate value theorem ensures that $f$ has at least one root.
+  % Let $x$, $y \in [a, b]$ be such that $f(x) = f(y) = 0$.
+\end{proof}
+
+\begin{lemma}
+  Let $a$, $b \in \bR$ be such that $a < b$ and
+  let $f\colon [ a, b ] \to \bR$ be differentiable and such that $f'$ has exactly one root.
+   then $f$ has at most one root.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+\begin{lemma}
+  Let $f\colon \gtint{0}\to \bR$ be such that
+  $f$ is differentiable and $f'$ is increasing.
+  Both $\lim_{x \to 0} f(x)$ and $\lim_{x \to \infty} f(x)$ exist in $\bR \cup \{ - \infty , + \infty \}$.
+  If $\lim_{x \to 0} f(x)$ or $\lim_{x \o \infty}$ is non-positive then
+  
+  then there exists $t \in \gtint{0}$ such that for every $x \in \gtint{0}$,
+  the sign of $f(x)$ is equal to that of $x - t$.
+\end{lemma}
+
+\begin{proof}
+  Without loss of generality, we may assume that $f(0)$ is negative and that $f'$ is increasing
+\end{proof}
