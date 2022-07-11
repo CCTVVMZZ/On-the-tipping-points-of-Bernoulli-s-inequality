@@ -35,19 +35,30 @@
 Let $V$ be a normed vector space.
 For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
 
-\begin{lemma} \label{lem:mvi}
-  Let $I$ be an interval of $\bR$,
-  %let $V$ be a normed vector space,
-  let $f\colon I \to V$, and let $g\colon I \to \bR$ be such that
-  $f$ and $g$ are both differentiable and $\norm{f'(x)} < g'(x)$ for every $x \in I$.
-  For every $a$, $b \in I$, $a \le b$ implies
+\begin{theorem}[Mean value inequality \cite{Coleman-calculus}] \label{thm:mvi}
+  Let $a$, $b \in \bR$ be such that $a \le b$,
+  let $f\colon [a, b] \to V$, and let $g\colon [a, b] \to \bR$ be such that
+  \begin{enumerate}
+  \item both $f$ and $g$ are continuous on $[a, b]$,
+  \item both $f$ and $g$ are differentiable on $\left]a, b \right[$, and
+  \item inequality $\norm{f'(x)} \le g'(x)$ holds true for every $x \in \left]a, b \right[$.
+  \end{enumerate}
+  Inequality
   \begin{equation} \label{eq:mvi-f-g}
-    \norm{f(b) - f(a)} \le g(b) - g(a) \, .
+    \norm{f(b) - f(a)} \le g(b) - g(a) 
   \end{equation} 
+  holds true.
+\end{theorem}
+
+\begin{lemma} \label{lem:mvi}
+  Let the notation be as in Theorem~\ref{thm:mvi}.
+  Inequality~\eqref{eq:mvi-f-g} holds true
+  if both $f$ and $g$ are differentiable at $a$
+  and
+  if $\norm{f'(x)} < g'(x)$ for every $x \in \left[a, b \right[$.  
 \end{lemma}
 
 \begin{proof}
-  Let $a$, $b \in I$ be such that $a < b$.
   Put
   $$
   X = \left\{ x \in [a, b] : \norm{f(x) - f(a)}  \le g(x) - g(a) \right\} \, .
@@ -59,14 +70,14 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
   $c$ is
   an element of $[a, b]$
   and
-  an adherent point for $X$ in $\bR$ \cite{Rudin}.
+  a closure point of $X$ in $\bR$ \cite{RudinPrinciples}.
   Besides, $X$ is closed in $[a, b]$ because $f$ and $g$ are continuous on that interval.
   It follows $c \in X$.
   %Since $[a, b]$ is closed in $\bR$, $X$ is also closed in $\bR$, and thus $c$ is an element of~$X$.
   Now, let $x \in X$ with $x < b$.
   The final step is to rule out $c = x$.
   Since $\norm{f'(x)} < g'(x)$,
-  there exists $y \in \left]x, b\right]$ such that
+  there exists $y \in \left]x, b\right[$ such that
   $$
   \norm{\frac{f(y)  - f(x)}{y - x}} < \frac{g(y) - g(x)}{y - x}  \, .
   $$
@@ -79,33 +90,46 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
   \end{align*}
   whence $y \in X$.
   Therefore, $x$ is not an upper bound for $X$, and thus $c$ is not equal to~$x$.
-\end{proof} 
+\end{proof}
 
-\begin{theorem} \label{thm:mvi}
-  Let $a$, $b \in \bR$ be such that $a < b$,
-  %let $V$ be a normed vector space,
-  let $f\colon [a, b] \to V$, and let $g\colon [a, b] \to \bR$ be such that
-  $f$ and $g$ are both continuous on $[a, b]$ and differentiable on $\left]a, b \right[$.
-  If $\norm{f'(x)} \le g'(x)$ for every $x \in \left]a, b \right[$
-  then Equation~\eqref{eq:mvi-f-g} holds true.
-\end{theorem}
-
-\begin{proof}
-  Put $I = \left]a, b \right[$.
-  Let  $u$, $v \in I$ be such that $u < v$ and let  $\varepsilon \in \gtint{0}$.
-  Let $g_\varepsilon \colon I \to \bR$ be defined by $g_\varepsilon(x) = g(x) + \varepsilon x$ for every $x \in I$.
-  By construction, we have
+\begin{proof}[Proof of Theorem~\ref{thm:mvi}]
+  % Put $I = \left]a, b \right[$.
+  % Let  $u$, $v \in I$ be such that $u < v$ and
+  Let $\alpha \in \left]a, b \right[$ and let  $\varepsilon \in \gtint{0}$.
+  Let $g_\varepsilon \colon [a, b] \to \bR$ be defined by: $g_\varepsilon(x) = g(x) + \varepsilon x$ for every $x \in [a, b]$.
+  Both $f$ and $g_\varepsilon$ are continuous on $[\alpha, b]$ and 
+  both $f$ and $g_\varepsilon$ are differentiable on $\left[\alpha, b \right[$.
+  Moreover, we have 
   $$
   \norm{f'(x)} \le g'(x) < g'(x) + \varepsilon =  g'_\varepsilon(x)
   $$
-  for every $x \in I$.
+  for every $x \in \left]a, b \right[$.
   Therefore, Lemma~\ref{lem:mvi} ensures 
   \begin{equation} \label{eq:mvi-alpha-beta-eps} 
-  \norm{f(u) - f(v)} \le g_\varepsilon(x) - g_\varepsilon(y) \, .
+  \norm{f(\alpha) - f(b)} \le g_\varepsilon(\alpha) - g_\varepsilon(b) \, .
 \end{equation}
-  Now, let $u$, $v$, and $\varepsilon$ approach $a$, $b$, and $0$, respectively.
+%for every $\alpha \in \left]a, b \right[$.
+  Now, let $\alpha$ and $\varepsilon$ approach $a$ and $0$, respectively.
   Then, Equation~\eqref{eq:mvi-alpha-beta-eps} yields Equation~\eqref{eq:mvi-f-g},
 \end{proof}
+\bibliographystyle{plain}
+\bibliography{bernoulli}
+
+\end{document} 
+
+\begin{lemma} \label{lem:mvi}
+  Let $I$ be an interval of $\bR$,
+  %let $V$ be a normed vector space,
+  let $f\colon I \to V$, and let $g\colon I \to \bR$ be such that
+  $f$ and $g$ are both differentiable and $\norm{f'(x)} < g'(x)$ for every $x \in I$.
+  For every $a$, $b \in I$, $a \le b$ implies
+\end{lemma}
+
+\begin{proof}
+  Let $a$, $b \in I$ be such that $a < b$.
+\end{proof} 
+
+
 
 \begin{theorem}
   Let $I$ be a real interval,
