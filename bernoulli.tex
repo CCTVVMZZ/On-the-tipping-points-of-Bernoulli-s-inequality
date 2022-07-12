@@ -43,11 +43,10 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
   \item both $f$ and $g$ are differentiable on $\left]a, b \right[$, and
   \item inequality $\norm{f'(x)} \le g'(x)$ holds true for every $x \in \left]a, b \right[$.
   \end{enumerate}
-  Inequality
+  Then, we have 
   \begin{equation} \label{eq:mvi-f-g}
-    \norm{f(b) - f(a)} \le g(b) - g(a) 
+    \norm{f(b) - f(a)} \le g(b) - g(a) \, .
   \end{equation} 
-  holds true.
 \end{theorem}
 
 \begin{lemma} \label{lem:mvi}
@@ -64,7 +63,7 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
   X = \left\{ x \in [a, b] : \norm{f(x) - f(a)}  \le g(x) - g(a) \right\} \, .
   $$
   Our task is to prove $b \in X$.
-  Put $c = \sup X$.  %(\emph{a priori} $c = \pm \infty$ is possible).
+  Put $c = \sup X$.  
   We first check $c \in X$ and then $b = c$.
   Since $a \in X$ and since $b$ is an upper bound for $X$,
   $c$ is
@@ -73,7 +72,6 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
   a closure point of $X$ in $\bR$ \cite{RudinPrinciples}.
   Besides, $X$ is closed in $[a, b]$ because $f$ and $g$ are continuous on that interval.
   It follows $c \in X$.
-  %Since $[a, b]$ is closed in $\bR$, $X$ is also closed in $\bR$, and thus $c$ is an element of~$X$.
   Now, let $x \in X$ with $x < b$.
   The final step is to rule out $c = x$.
   Since $\norm{f'(x)} < g'(x)$,
@@ -93,8 +91,6 @@ For each $v \in V$, the norm of $v$ in $V$ is denoted by $\norm{v}$ as usual.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:mvi}]
-  % Put $I = \left]a, b \right[$.
-  % Let  $u$, $v \in I$ be such that $u < v$ and
   Let $\alpha \in \left]a, b \right[$ and let  $\varepsilon \in \gtint{0}$.
   Let $g_\varepsilon \colon [a, b] \to \bR$ be defined by: $g_\varepsilon(x) = g(x) + \varepsilon x$ for every $x \in [a, b]$.
   Both $f$ and $g_\varepsilon$ are continuous on $[\alpha, b]$ and 
